@@ -532,6 +532,9 @@ header .btn:hover {
 	background-color: #262a33;
 	background-image: linear-gradient(120deg, #434a59, #262a33);
 }
+.page-header .btn .fa {
+	color: #fff;
+}
 @media screen and (min-width: 64em) {
 	.page-header {
 		padding: 5rem 6rem;
