@@ -1,6 +1,6 @@
 import type { User } from "@/features/portfolio/types/user";
 
-export const USER = {
+export const USER: User = {
   firstName: "Jason",
   lastName: "Stockman",
   displayName: "Jason Stockman",
@@ -14,14 +14,7 @@ export const USER = {
   email: "amFzb25AcG0ubWU=", // base64 encoded
   website: "https://jasonstockman.com",
   jobTitle: "Entrepreneur, Founder",
-  jobs: [
-    // TODO: Add your work experience
-    // {
-    //   title: "Job Title",
-    //   company: "Company Name",
-    //   website: "https://example.com",
-    // },
-  ],
+  jobs: [],
   about: `
 I love building and exploring new technologies. Full-stack developer at heart.
 
@@ -31,8 +24,7 @@ Lead Engineer at ArchimedesFinance. Founder of Warm.
   avatar: "/image.webp",
   ogImage: "", // TODO: Add your OG image URL for social media previews
   namePronunciationUrl: "", // Optional: audio file for name pronunciation
-  affiliateBadge: undefined, // Optional: affiliate badge configuration
   timeZone: "America/Los_Angeles",
   keywords: ["jasonstockman", "jason stockman", "jason", "stockman"],
   dateCreated: "2026-01-29", // YYYY-MM-DD
-} satisfies User;
+};

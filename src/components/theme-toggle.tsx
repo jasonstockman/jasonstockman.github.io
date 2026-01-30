@@ -1,8 +1,7 @@
 "use client";
 
 import { useTheme } from "next-themes";
-import { useCallback } from "react";
-import { useHotkeys } from "react-hotkeys-hook";
+import { useCallback, useEffect } from "react";
 
 import { META_THEME_COLORS } from "@/config/site";
 import { useMetaColor } from "@/hooks/use-meta-color";
@@ -31,7 +30,23 @@ export function ThemeToggle() {
     );
   }, [resolvedTheme, setTheme, setMetaColor, playClick]);
 
-  useHotkeys("d", switchTheme);
+  useEffect(() => {
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (
+        event.key === "d" &&
+        !event.metaKey &&
+        !event.ctrlKey &&
+        !event.altKey &&
+        !(event.target instanceof HTMLInputElement) &&
+        !(event.target instanceof HTMLTextAreaElement)
+      ) {
+        switchTheme();
+      }
+    };
+
+    document.addEventListener("keydown", handleKeyDown);
+    return () => document.removeEventListener("keydown", handleKeyDown);
+  }, [switchTheme]);
 
   return (
     <Tooltip>
