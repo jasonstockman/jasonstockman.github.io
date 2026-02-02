@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jason Stockman - Full Stack Developer</title>
+    <style>
+        :root {
+            --bg-color: #ffffff;
+            --text-color: #1f2937;
+            --text-muted: #6b7280;
+            --text-light: #9ca3af;
+            --border-color: #f3f4f6;
+            --card-bg: #f9fafb;
+            --accent: #3b82f6;
+        }
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.5;
+        }
+        a { color: inherit; text-decoration: none; }
+        a:hover { opacity: 0.8; }
+        img { max-width: 100%; height: auto; }
+        hr { border: none; border-top: 1px solid var(--border-color); }
+
+        /* Layout */
+        .container { max-width: 36rem; margin: 0 auto; padding: 2rem 1.5rem; }
+        .flex { display: flex; }
+        .flex-col { flex-direction: column; }
+        .items-start { align-items: flex-start; }
+        .items-center { align-items: center; }
+        .justify-between { justify-content: space-between; }
+        .gap-1 { gap: 0.25rem; }
+        .gap-1-5 { gap: 0.375rem; }
+        .gap-2 { gap: 0.5rem; }
+        .gap-4 { gap: 1rem; }
+        .mb-4 { margin-bottom: 1rem; }
+        .mb-6 { margin-bottom: 1.5rem; }
+        .py-4 { padding-top: 1rem; padding-bottom: 1rem; }
+        .py-8 { padding-top: 2rem; padding-bottom: 2rem; }
+        .pt-6 { padding-top: 1.5rem; }
+        .space-y-4 > * + * { margin-top: 1rem; }
+
+        /* Typography */
+        .text-xl { font-size: 1.25rem; }
+        .text-lg { font-size: 1.125rem; }
+        .text-sm { font-size: 0.875rem; }
+        .font-semibold { font-weight: 600; }
+        .leading-relaxed { line-height: 1.625; }
+        h1, h2, strong { color: var(--text-color); }
+        .text-muted { color: var(--text-muted); }
+        .text-light { color: var(--text-light); }
+        .link { color: var(--accent); }
+        .link:hover { opacity: 0.7; }
+
+        /* Components */
+        .avatar { width: 5rem; height: 5rem; border-radius: 1rem; object-fit: cover; }
+        .icon-sm { width: 0.75rem; height: 0.75rem; }
+        .icon { width: 1rem; height: 1rem; }
+        .border-t { border-top: 1px solid var(--border-color); }
+
+        /* Email obfuscation */
+        .email > span:nth-child(3),
+        .email > span:nth-child(5) { display: none; }
+
+        /* Footer */
+        footer { width: 100%; max-width: 36rem; margin: 0 auto; padding: 1.5rem; }
+    </style>
+    <script>
+        // Theme detection - runs immediately to prevent flash
+        (function() {
+            const hour = new Date().getHours();
+            const themes = {
+                night: { bg: '#0f172a', text: '#e2e8f0', muted: '#94a3b8', light: '#64748b', border: '#1e293b', card: '#1e293b', accent: '#60a5fa' },
+                dawn: { bg: '#fef3f2', text: '#1f2937', muted: '#6b7280', light: '#9ca3af', border: '#fecaca', card: '#fff1f0', accent: '#f97316' },
+                morning: { bg: '#ffffff', text: '#1f2937', muted: '#6b7280', light: '#9ca3af', border: '#f3f4f6', card: '#f9fafb', accent: '#3b82f6' },
+                afternoon: { bg: '#fffbf5', text: '#292524', muted: '#78716c', light: '#a8a29e', border: '#f5f5f4', card: '#fafaf9', accent: '#0ea5e9' },
+                golden: { bg: '#fffbeb', text: '#292524', muted: '#78716c', light: '#a8a29e', border: '#fef3c7', card: '#fef9e7', accent: '#f59e0b' },
+                dusk: { bg: '#1e1b4b', text: '#e0e7ff', muted: '#a5b4fc', light: '#818cf8', border: '#312e81', card: '#312e81', accent: '#a78bfa' }
+            };
+            let t;
+            if (hour >= 22 || hour < 5) t = themes.night;
+            else if (hour < 7) t = themes.dawn;
+            else if (hour < 12) t = themes.morning;
+            else if (hour < 17) t = themes.afternoon;
+            else if (hour < 20) t = themes.golden;
+            else t = themes.dusk;
+            const r = document.documentElement;
+            r.style.setProperty('--bg-color', t.bg);
+            r.style.setProperty('--text-color', t.text);
+            r.style.setProperty('--text-muted', t.muted);
+            r.style.setProperty('--text-light', t.light);
+            r.style.setProperty('--border-color', t.border);
+            r.style.setProperty('--card-bg', t.card);
+            r.style.setProperty('--accent', t.accent);
+        })();
+    </script>
+</head>
+<body>
+    <div class="container">
+
+        <!-- Header -->
+        <header class="flex items-start justify-between mb-6">
+            <div class="flex gap-4">
+                <img src="me.webp" alt="Profile" class="avatar" width="80" height="80">
+                <div>
+                    <h1 class="text-xl font-semibold">Jason Stockman</h1>
+                    <p class="text-muted">Full Stack Developer</p>
+                    <p class="text-light text-sm flex items-center gap-1">
+                        <svg class="icon-sm" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/>
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/>
+                        </svg>
+                        Pacifica, CA
+                    </p>
+                </div>
+            </div>
+        </header>
+
+        <!-- Contact Bar -->
+        <div class="flex justify-between items-center py-4 border-t text-sm text-muted">
+            <a class="flex items-center gap-1-5">
+                <svg class="icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
+                </svg>
+                <span class="email flex">
+                    <span>jason@</span>
+                    <span>pm.</span>
+                    <span>gmail.</span>
+                    <span>me</span>
+                    <span>.com</span>
+                </span>
+            </a>
+            <div class="flex gap-4">
+                <a href="https://x.com/jasonstockman" target="_blank" class="flex items-center gap-1-5">
+                    <svg class="icon" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+                    </svg>
+                    Twitter
+                </a>
+                <a href="https://linkedin.com/in/jasonstockman" target="_blank" class="flex items-center gap-1-5">
+                    <svg class="icon" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+                    </svg>
+                    LinkedIn
+                </a>
+            </div>
+        </div>
+
+        <!-- About Me -->
+        <section class="py-8">
+            <h2 class="text-lg font-semibold mb-4">About me</h2>
+            <div class="space-y-4 text-muted text-sm leading-relaxed">
+                <p>Hey, I'm Jason. I'm a full stack developer with a knack for building web applications.</p>
+                <p>I'm currently <span id="age">38</span> years old and live in Pacifica, California - roughly 20 minutes south of San Francisco.</p>
+                <p>I've been building websites for over <strong id="years">12</strong> years now, and along the way I've had the good fortune to work with some amazing people.</p>
+                <hr>
+                <p>Today, I'm building <a href="https://warm.io" target="_blank" class="link">Warm</a>, a personal financial dashboard.</p>
+                <p>Our mission is to make navigating your finances easy and stress-free.</p>
+                <hr>
+                <p>Previously, I co-founded <a href="https://proton.me" target="_blank" class="link">Proton</a>, an end-to-end encrypted email service.</p>
+                <p>Our mission with Proton is to make encryption and privacy accessible.</p>
+            </div>
+        </section>
+
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="border-t pt-6">
+            <div class="flex justify-between items-center text-light text-sm">
+                <p>Designed with 🫰 in Pacifica, CA</p>
+                <p>&copy; Copyright <span id="year">2026</span></p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        const y = new Date().getFullYear();
+        document.getElementById('year').textContent = y;
+        document.getElementById('years').textContent = y - 2014;
+        document.getElementById('age').textContent = y - 1987;
+    </script>
+</body>
+</html>
