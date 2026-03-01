@@ -42,7 +42,7 @@
         hr { border: none; border-top: 1px solid var(--border-color); }
 
         /* Layout */
-        .container { max-width: 36rem; margin: 0 auto; padding: 2rem 1.5rem; }
+        .container { max-width: 36rem; margin: 0 auto; padding: 2rem 1.5rem; position: relative; }
         .flex { display: flex; }
         .flex-col { flex-direction: column; }
         .items-start { align-items: flex-start; }
@@ -79,9 +79,9 @@
 
         /* Theme toggle */
         .theme-toggle {
-            position: fixed;
-            top: 1rem;
-            right: 1rem;
+            position: absolute;
+            top: 0;
+            right: 0;
             width: 2.25rem;
             height: 2.25rem;
             border: none;
@@ -119,17 +119,17 @@
     </script>
 </head>
 <body>
-    <!-- Theme Toggle -->
-    <button class="theme-toggle" aria-label="Toggle theme">
-        <svg class="icon-moon" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" d="M21 12.79A9 9 0 1111.21 3a7 7 0 009.79 9.79z"/>
-        </svg>
-        <svg class="icon-sun" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-            <circle cx="12" cy="12" r="5"/><path stroke-linecap="round" d="M12 1v2m0 18v2M4.22 4.22l1.42 1.42m12.73 12.73l1.42 1.42M1 12h2m18 0h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/>
-        </svg>
-    </button>
-
     <div class="container">
+
+        <!-- Theme Toggle -->
+        <button class="theme-toggle" aria-label="Toggle theme">
+            <svg class="icon-moon" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M21 12.79A9 9 0 1111.21 3a7 7 0 009.79 9.79z"/>
+            </svg>
+            <svg class="icon-sun" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                <circle cx="12" cy="12" r="5"/><path stroke-linecap="round" d="M12 1v2m0 18v2M4.22 4.22l1.42 1.42m12.73 12.73l1.42 1.42M1 12h2m18 0h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/>
+            </svg>
+        </button>
 
         <!-- Header -->
         <header class="flex items-start justify-between mb-6">
