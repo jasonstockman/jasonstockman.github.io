@@ -6,20 +6,35 @@
     <title>Jason Stockman - Full Stack Developer</title>
     <style>
         :root {
-            --bg-color: #ffffff;
             --text-color: #1f2937;
             --text-muted: #6b7280;
             --text-light: #9ca3af;
-            --border-color: #f3f4f6;
+            --border-color: #e5e7eb;
             --card-bg: #f9fafb;
             --accent: #3b82f6;
+            --toggle-bg: rgba(0,0,0,0.06);
+            --toggle-hover: rgba(0,0,0,0.1);
+        }
+        html[data-theme="dark"] {
+            --text-color: #e2e8f0;
+            --text-muted: #94a3b8;
+            --text-light: #64748b;
+            --border-color: #1e293b;
+            --card-bg: #1e293b;
+            --accent: #60a5fa;
+            --toggle-bg: rgba(255,255,255,0.08);
+            --toggle-hover: rgba(255,255,255,0.14);
         }
         *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
         body {
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
-            background-color: var(--bg-color);
+            background: linear-gradient(135deg, #fafafa 0%, #f5f5f4 35%, #f0f0ee 65%, #fafaf8 100%);
             color: var(--text-color);
             line-height: 1.5;
+            min-height: 100vh;
+        }
+        html[data-theme="dark"] body {
+            background: linear-gradient(135deg, #0f172a 0%, #111827 35%, #0f1520 65%, #101a2e 100%);
         }
         a { color: inherit; text-decoration: none; }
         a:hover { opacity: 0.8; }
@@ -62,6 +77,30 @@
         .icon { width: 1rem; height: 1rem; }
         .border-t { border-top: 1px solid var(--border-color); }
 
+        /* Theme toggle */
+        .theme-toggle {
+            position: fixed;
+            top: 1rem;
+            right: 1rem;
+            width: 2.25rem;
+            height: 2.25rem;
+            border: none;
+            border-radius: 0.5rem;
+            background: var(--toggle-bg);
+            color: var(--text-muted);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background 0.2s;
+            z-index: 10;
+        }
+        .theme-toggle:hover { background: var(--toggle-hover); }
+        .theme-toggle svg { width: 1.125rem; height: 1.125rem; }
+        .theme-toggle .icon-sun { display: none; }
+        html[data-theme="dark"] .theme-toggle .icon-moon { display: none; }
+        html[data-theme="dark"] .theme-toggle .icon-sun { display: block; }
+
         /* Email obfuscation */
         .email > span:nth-child(3),
         .email > span:nth-child(5) { display: none; }
@@ -70,36 +109,26 @@
         footer { width: 100%; max-width: 36rem; margin: 0 auto; padding: 1.5rem; }
     </style>
     <script>
-        // Theme detection - runs immediately to prevent flash
+        // Apply saved theme immediately to prevent flash
         (function() {
-            const hour = new Date().getHours();
-            const themes = {
-                night: { bg: '#0f172a', text: '#e2e8f0', muted: '#94a3b8', light: '#64748b', border: '#1e293b', card: '#1e293b', accent: '#60a5fa' },
-                dawn: { bg: '#fef3f2', text: '#1f2937', muted: '#6b7280', light: '#9ca3af', border: '#fecaca', card: '#fff1f0', accent: '#f97316' },
-                morning: { bg: '#ffffff', text: '#1f2937', muted: '#6b7280', light: '#9ca3af', border: '#f3f4f6', card: '#f9fafb', accent: '#3b82f6' },
-                afternoon: { bg: '#fffbf5', text: '#292524', muted: '#78716c', light: '#a8a29e', border: '#f5f5f4', card: '#fafaf9', accent: '#0ea5e9' },
-                golden: { bg: '#fffbeb', text: '#292524', muted: '#78716c', light: '#a8a29e', border: '#fef3c7', card: '#fef9e7', accent: '#f59e0b' },
-                dusk: { bg: '#1e1b4b', text: '#e0e7ff', muted: '#a5b4fc', light: '#818cf8', border: '#312e81', card: '#312e81', accent: '#a78bfa' }
-            };
-            let t;
-            if (hour >= 22 || hour < 5) t = themes.night;
-            else if (hour < 7) t = themes.dawn;
-            else if (hour < 12) t = themes.morning;
-            else if (hour < 17) t = themes.afternoon;
-            else if (hour < 20) t = themes.golden;
-            else t = themes.dusk;
-            const r = document.documentElement;
-            r.style.setProperty('--bg-color', t.bg);
-            r.style.setProperty('--text-color', t.text);
-            r.style.setProperty('--text-muted', t.muted);
-            r.style.setProperty('--text-light', t.light);
-            r.style.setProperty('--border-color', t.border);
-            r.style.setProperty('--card-bg', t.card);
-            r.style.setProperty('--accent', t.accent);
+            var saved = localStorage.getItem('theme');
+            if (saved === 'dark' || (!saved && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+                document.documentElement.setAttribute('data-theme', 'dark');
+            }
         })();
     </script>
 </head>
 <body>
+    <!-- Theme Toggle -->
+    <button class="theme-toggle" aria-label="Toggle theme">
+        <svg class="icon-moon" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M21 12.79A9 9 0 1111.21 3a7 7 0 009.79 9.79z"/>
+        </svg>
+        <svg class="icon-sun" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <circle cx="12" cy="12" r="5"/><path stroke-linecap="round" d="M12 1v2m0 18v2M4.22 4.22l1.42 1.42m12.73 12.73l1.42 1.42M1 12h2m18 0h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/>
+        </svg>
+    </button>
+
     <div class="container">
 
         <!-- Header -->
@@ -172,7 +201,7 @@
     <footer>
         <div class="border-t pt-6">
             <div class="flex justify-between items-center text-light text-sm">
-                <p>Designed with 🫰 in Pacifica, CA</p>
+                <p>Designed with &#x1FAF0; in Pacifica, CA</p>
                 <p>&copy; Copyright <span id="year">2026</span></p>
             </div>
         </div>
@@ -185,6 +214,18 @@
         document.getElementById('year').textContent = y;
         document.getElementById('years').textContent = y - 2004;
         document.getElementById('age').textContent = y - 1987 - (hadBirthday ? 0 : 1);
+
+        // Theme toggle
+        document.querySelector('.theme-toggle').addEventListener('click', function() {
+            var isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+            if (isDark) {
+                document.documentElement.removeAttribute('data-theme');
+                localStorage.setItem('theme', 'light');
+            } else {
+                document.documentElement.setAttribute('data-theme', 'dark');
+                localStorage.setItem('theme', 'dark');
+            }
+        });
     </script>
 </body>
 </html>
