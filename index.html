@@ -156,7 +156,7 @@
             <div class="space-y-4 text-muted text-sm leading-relaxed">
                 <p>Hey, I'm Jason. I'm a full stack developer with a knack for building web applications.</p>
                 <p>I'm currently <span id="age">38</span> years old and live in Pacifica, California - roughly 20 minutes south of San Francisco.</p>
-                <p>I've been building websites for over <strong id="years">12</strong> years now, and along the way I've had the good fortune to work with some amazing people.</p>
+                <p>I've been building websites for over <strong id="years">22</strong> years now, and along the way I've had the good fortune to work with some amazing people.</p>
                 <hr>
                 <p>Today, I'm building <a href="https://warm.io" target="_blank" class="link">Warm</a>, a personal financial dashboard.</p>
                 <p>Our mission is to make navigating your finances easy and stress-free.</p>
@@ -179,10 +179,12 @@
     </footer>
 
     <script>
-        const y = new Date().getFullYear();
+        const now = new Date();
+        const y = now.getFullYear();
+        const hadBirthday = now.getMonth() > 11 || (now.getMonth() === 11 && now.getDate() >= 11);
         document.getElementById('year').textContent = y;
-        document.getElementById('years').textContent = y - 2014;
-        document.getElementById('age').textContent = y - 1987;
+        document.getElementById('years').textContent = y - 2004;
+        document.getElementById('age').textContent = y - 1987 - (hadBirthday ? 0 : 1);
     </script>
 </body>
 </html>
