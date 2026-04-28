@@ -254,33 +254,44 @@
         const now = new Date();
         document.getElementById('year').textContent = now.getFullYear();
 
-        const sizes = [
-            [480, 640], [640, 480], [520, 780], [620, 620],
-            [480, 720], [720, 520], [540, 700], [680, 920]
+        const postIds = [
+            ...Array.from({ length: 13 }, (_, index) => index + 1),
+            ...Array.from({ length: 30 }, (_, index) => index + 15)
         ];
-        const totalImages = 64;
+        const jpgImages = new Set(['post_09_3', 'post_17_4', 'post_28_2']);
+        const imageNames = [
+            ...postIds.flatMap(function(postId) {
+                const post = String(postId).padStart(2, '0');
+
+                return [1, 2, 3, 4].map(function(frame) {
+                    const baseName = `post_${post}_${frame}`;
+                    const extension = jpgImages.has(baseName) ? 'jpg' : 'png';
+
+                    return `${baseName}.${extension}`;
+                });
+            }),
+            'post_99_finally_1.png',
+            'post_99_finally_2.png',
+            'post_99_finally_3.png'
+        ];
         const gallery = document.getElementById('gallery');
         const imageCount = document.getElementById('image-count');
 
-        for (let index = 1; index <= totalImages; index += 1) {
-            const size = sizes[(index - 1) % sizes.length];
+        imageNames.forEach(function(fileName, index) {
             const figure = document.createElement('figure');
             const image = document.createElement('img');
-            const padded = String(index).padStart(2, '0');
 
             figure.className = 'gallery-item';
-            image.src = `https://picsum.photos/seed/pixel-chopper-${padded}/${size[0]}/${size[1]}`;
-            image.width = size[0];
-            image.height = size[1];
-            image.alt = `Gallery image ${index}`;
+            image.src = `assets/pixel-chopper/${fileName}`;
+            image.alt = `Pixel Chopper image ${index + 1}`;
             image.decoding = 'async';
-            image.loading = index <= 10 ? 'eager' : 'lazy';
+            image.loading = index < 12 ? 'eager' : 'lazy';
 
             figure.appendChild(image);
             gallery.appendChild(figure);
-        }
+        });
 
-        imageCount.textContent = totalImages;
+        imageCount.textContent = imageNames.length;
 
         document.querySelector('.theme-toggle').addEventListener('click', function() {
             var isDark = document.documentElement.getAttribute('data-theme') === 'dark';
