@@ -61,8 +61,8 @@ float spine(float x, float k, float lane, float t, vec2 m) {
   y += 0.06 * sin(2.6 * x - 0.8 * t + 1.3 * k + 0.7);
   y += 0.025 * sin(5.3 * x + 1.3 * t + 4.0 * k);
   float near = exp(-(x - m.x) * (x - m.x) * 3.5);
-  y += (m.y - y) * 0.25 * u_pull * near;
-  y += u_stir * 0.04 * near * sin(x * 11.0 - t * 5.0 + k * 2.0);
+  y += (m.y - y) * 0.125 * u_pull * near;
+  y += u_stir * 0.02 * near * sin(x * 11.0 - t * 5.0 + k * 2.0);
   return y;
 }
 
@@ -521,8 +521,8 @@ function createShaderMetal(canvas, initial = {}) {
     pullTarget = 0.35 + 0.65 * Math.max(0, 1 - gap / (window.innerHeight * 0.6));
     target.x = x;
     target.y = y;
-    lightTarget.x = (x * 2 - 1) * 0.9;
-    lightTarget.y = (y * 2 - 1) * 0.9;
+    lightTarget.x = (x * 2 - 1) * 0.45;
+    lightTarget.y = (y * 2 - 1) * 0.45;
     if (lastPointer && !mqReduce.matches) {
       stirTarget = Math.min(1, stirTarget + Math.hypot(e.clientX - lastPointer.x, e.clientY - lastPointer.y) / 250);
     }
