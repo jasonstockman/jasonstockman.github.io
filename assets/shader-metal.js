@@ -109,7 +109,7 @@ vec3 ramp(float s) {
   vec3 c = vec3(0.0);
   for (int i = 0; i < 8; i++) {
     float d = abs(mod(s - float(i) + 4.0, 8.0) - 4.0);
-    c += mix(u_light_stops[i], u_dark_stops[i], u_dark) * (1.0 - smoothstep(0.0, 1.0, min(d, 1.0)));
+    c += mix(u_light_stops[i], u_dark_stops[i], u_dark) * (1.0 - smoothstep(0.47, 0.53, d));
   }
   return c;
 }
@@ -148,7 +148,7 @@ void main() {
   float body = 1.0 - smoothstep(envelope - 3.0 * px, envelope - px, p.y);
   float depth = clamp((envelope - p.y) / 0.7, 0.0, 1.0);
   vec3 bodyTint = ramp(0.12 + 0.35 * depth + 0.1 * sin(p.x * 1.1 + t * 0.12));
-  col = linearToSrgb(bodyTint * mix(1.0, 0.7, depth)) * body;
+  col = linearToSrgb(bodyTint) * body;
   alpha = body;
 
   for (int i = 0; i < 5; i++) {
@@ -171,11 +171,6 @@ void main() {
     float hw = baseWidth * (0.82 + 0.22 * sin(0.9 * x + 0.35 * tk + 2.3 * k));
     float proj = hw * max(abs(ct), 0.035);
 
-    float sd = d + 0.045;
-    float shadowW = proj + 0.05;
-    float shadow = (1.0 - smoothstep(0.35, 1.0, abs(sd) / shadowW)) * mix(0.2, 0.32, u_dark);
-    col *= 1.0 - shadow;
-    alpha = alpha + shadow * (1.0 - alpha);
 
     float v = d / (ct >= 0.0 ? proj : -proj);
     float aa = 1.2 * px / proj;
@@ -197,28 +192,14 @@ void main() {
     float back = step(n.z, 0.0);
     n *= 1.0 - 2.0 * back;
 
-    vec3 r = reflect(vec3(0.0, 0.0, -1.0), n);
-    vec3 env = studio(r, t);
-
-    float facing = clamp(n.z, 0.0, 1.0);
-    vec3 F = u_f0 + (1.0 - u_f0) * pow(1.0 - facing, 5.0);
-
     float film = 0.5 + 0.5 * sin(x * 1.6 + v * 0.9 + tk * 0.35 + k * 1.9);
-    vec3 tint = ramp(film * 0.9 + facing * 0.25 + k * 0.23);
+    vec3 tint = ramp(film * 0.6 + k * 0.23);
     for (int j = 0; j < 3; j++) {
       float streak = smoothstep(0.985, 1.0, sin(v * 5.0 + x * 1.4 + tk * 0.2 + k * 2.1 + float(j) * 2.3));
       streak *= smoothstep(0.35, 0.8, sin(x * 0.9 + tk * 0.15 + k + float(j) * 1.7));
       tint = mix(tint, mix(u_light_accents[j], u_dark_accents[j], u_dark), streak * 0.9);
     }
-
-    float rl = max(dot(r, L), 0.0);
-    float spec = pow(rl, 90.0) * 5.0 + pow(rl, 14.0) * 0.55;
-
-    vec3 bare = tonemap((env * F + spec * F) * 1.05);
-    float shade = mix(0.72, 1.12, clamp(dot(env, vec3(0.2126, 0.7152, 0.0722)), 0.0, 1.0));
-    vec3 lit = mix(bare, tint * shade + spec * mix(0.2, 0.06, u_dark) * (tint + 0.15), u_iridescence);
-    lit *= mix(1.0, 0.72, back) * (0.94 + grain * 0.12);
-    lit *= mix(0.86, 1.0, f);
+    vec3 lit = tint * mix(1.0, 0.85, back) * mix(0.86, 1.0, f);
     vec3 rgb = linearToSrgb(lit);
 
     col = col * (1.0 - cover) + rgb * cover;
