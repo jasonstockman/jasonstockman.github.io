@@ -29,7 +29,7 @@ uniform vec3 u_f0;
 
 const float TAU = 6.28318530718;
 const float TILT = -0.01;
-const float STRETCH = 0.3;
+const float STRETCH = 0.45;
 
 float hash(vec2 p) {
   vec3 p3 = fract(vec3(p.xyx) * 0.1031);
@@ -169,15 +169,15 @@ void main() {
 
     float film = 0.5 + 0.5 * sin(x * 1.6 + v * 0.9 + tk * 0.35 + k * 1.9);
     vec3 rainbow = 0.5 + 0.5 * cos(TAU * (film * 1.6 + facing * 1.1 + vec3(0.0, 0.33, 0.67)));
-    rainbow = 0.2 + 0.8 * rainbow;
+    rainbow = 0.06 + 0.94 * rainbow;
     rainbow /= max(dot(rainbow, vec3(0.2126, 0.7152, 0.0722)), 0.2);
-    float sheen = u_iridescence * (0.45 + 0.55 * (1.0 - facing));
+    float sheen = u_iridescence * (0.8 + 0.2 * (1.0 - facing));
     F *= mix(vec3(1.0), rainbow, sheen);
 
     float rl = max(dot(r, L), 0.0);
     float spec = pow(rl, 90.0) * 5.0 + pow(rl, 14.0) * 0.55;
 
-    vec3 lit = env * F + spec * F;
+    vec3 lit = env * F + spec * F + rainbow * u_iridescence * 0.3;
     lit *= mix(1.0, 0.72, back) * (0.94 + grain * 0.12);
     lit *= mix(0.86, 1.0, f);
     vec3 rgb = linearToSrgb(tonemap(lit * 1.05));
