@@ -27,6 +27,10 @@ uniform float u_dark;
 uniform vec2 u_mouse;
 uniform vec2 u_light;
 uniform vec3 u_f0;
+uniform vec3 u_light_stops[8];
+uniform vec3 u_dark_stops[8];
+uniform vec3 u_light_accents[3];
+uniform vec3 u_dark_accents[3];
 
 const float TAU = 6.28318530718;
 const float TILT = -0.01;
@@ -100,6 +104,16 @@ vec3 linearToSrgb(vec3 c) {
   return mix(lo, hi, step(vec3(0.0031308), c));
 }
 
+vec3 ramp(float s) {
+  s = fract(s) * 8.0;
+  vec3 c = vec3(0.0);
+  for (int i = 0; i < 8; i++) {
+    float d = abs(mod(s - float(i) + 4.0, 8.0) - 4.0);
+    c += mix(u_light_stops[i], u_dark_stops[i], u_dark) * (1.0 - smoothstep(0.0, 1.0, min(d, 1.0)));
+  }
+  return c;
+}
+
 void main() {
   vec2 frag = gl_FragCoord.xy;
   float px = 1.0 / u_resolution.y;
@@ -116,6 +130,26 @@ void main() {
 
   vec3 col = vec3(0.0);
   float alpha = 0.0;
+
+  float envelope = -10.0;
+  for (int i = 0; i < 5; i++) {
+    float k = float(i);
+    if (k >= count) break;
+    float f = count > 1.0 ? k / (count - 1.0) : 0.5;
+    float lane = (f - 0.5) * spread;
+    float tk = t * mix(0.82, 1.0, f);
+    float e = 0.004;
+    float c = spine(p.x, k, lane, tk, m);
+    float slope = (spine(p.x + e, k, lane, tk, m) - spine(p.x - e, k, lane, tk, m)) / (2.0 * e);
+    float theta = 1.5 * p.x + 0.45 * tk + 1.7 * k + 0.55 * sin(0.7 * p.x - 0.3 * tk + k);
+    float hw = baseWidth * (0.82 + 0.22 * sin(0.9 * p.x + 0.35 * tk + 2.3 * k));
+    envelope = max(envelope, c + hw * max(abs(cos(theta)), 0.035) * sqrt(1.0 + slope * slope));
+  }
+  float body = 1.0 - smoothstep(envelope - 3.0 * px, envelope - px, p.y);
+  float depth = clamp((envelope - p.y) / 0.7, 0.0, 1.0);
+  vec3 bodyTint = ramp(0.12 + 0.35 * depth + 0.1 * sin(p.x * 1.1 + t * 0.12));
+  col = linearToSrgb(bodyTint * mix(1.0, 0.7, depth)) * body;
+  alpha = body;
 
   for (int i = 0; i < 5; i++) {
     float k = float(i);
@@ -170,19 +204,22 @@ void main() {
     vec3 F = u_f0 + (1.0 - u_f0) * pow(1.0 - facing, 5.0);
 
     float film = 0.5 + 0.5 * sin(x * 1.6 + v * 0.9 + tk * 0.35 + k * 1.9);
-    vec3 rainbow = 0.5 + 0.5 * cos(TAU * (film * 1.6 + facing * 1.1 + vec3(0.0, 0.33, 0.67)));
-    rainbow = 0.06 + 0.94 * rainbow;
-    rainbow /= max(dot(rainbow, vec3(0.2126, 0.7152, 0.0722)), 0.2);
-    float sheen = u_iridescence * (0.8 + 0.2 * (1.0 - facing));
-    F *= mix(vec3(1.0), rainbow, sheen);
+    vec3 tint = ramp(film * 0.9 + facing * 0.25 + k * 0.23);
+    for (int j = 0; j < 3; j++) {
+      float streak = smoothstep(0.985, 1.0, sin(v * 5.0 + x * 1.4 + tk * 0.2 + k * 2.1 + float(j) * 2.3));
+      streak *= smoothstep(0.35, 0.8, sin(x * 0.9 + tk * 0.15 + k + float(j) * 1.7));
+      tint = mix(tint, mix(u_light_accents[j], u_dark_accents[j], u_dark), streak * 0.9);
+    }
 
     float rl = max(dot(r, L), 0.0);
     float spec = pow(rl, 90.0) * 5.0 + pow(rl, 14.0) * 0.55;
 
-    vec3 lit = env * F + spec * F + rainbow * u_iridescence * 0.3;
+    vec3 bare = tonemap((env * F + spec * F) * 1.05);
+    float shade = mix(0.72, 1.12, clamp(dot(env, vec3(0.2126, 0.7152, 0.0722)), 0.0, 1.0));
+    vec3 lit = mix(bare, tint * shade + spec * mix(0.2, 0.06, u_dark) * (tint + 0.15), u_iridescence);
     lit *= mix(1.0, 0.72, back) * (0.94 + grain * 0.12);
     lit *= mix(0.86, 1.0, f);
-    vec3 rgb = linearToSrgb(tonemap(lit * 1.05));
+    vec3 rgb = linearToSrgb(lit);
 
     col = col * (1.0 - cover) + rgb * cover;
     alpha = alpha * (1.0 - cover) + cover;
@@ -341,6 +378,13 @@ function createShaderMetal(canvas, initial = {}) {
     uMouse = u("u_mouse");
     uLight = u("u_light");
     uF0 = u("u_f0");
+    const palette = options.palette;
+    if (palette) {
+      gl.uniform3fv(u("u_light_stops"), palette.light.stops.flatMap(hexToLinear));
+      gl.uniform3fv(u("u_dark_stops"), palette.dark.stops.flatMap(hexToLinear));
+      gl.uniform3fv(u("u_light_accents"), palette.light.accents.flatMap(hexToLinear));
+      gl.uniform3fv(u("u_dark_accents"), palette.dark.accents.flatMap(hexToLinear));
+    }
     return true;
   };
   if (!initGl())
