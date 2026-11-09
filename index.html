@@ -3,7 +3,35 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Jason Stockman - Full Stack Developer</title>
+    <title>Jason Stockman - Full Stack Developer in Pacifica, CA</title>
+    <meta name="description" content="Jason Stockman is a full stack developer building Warm, a personal finance dashboard, and the co-founder of Proton, the end-to-end encrypted email service.">
+    <meta name="author" content="Jason Stockman">
+    <meta name="robots" content="index, follow, max-image-preview:large">
+    <meta name="theme-color" content="#fafafa" media="(prefers-color-scheme: light)">
+    <meta name="theme-color" content="#0f172a" media="(prefers-color-scheme: dark)">
+    <link rel="canonical" href="https://jasonstockman.com/">
+    <link rel="icon" href="favicon.ico" sizes="any">
+    <link rel="apple-touch-icon" href="apple-touch-icon.png">
+    <meta property="og:type" content="profile">
+    <meta property="og:site_name" content="Jason Stockman">
+    <meta property="og:locale" content="en_US">
+    <meta property="og:title" content="Jason Stockman - Full Stack Developer in Pacifica, CA">
+    <meta property="og:description" content="Jason Stockman is a full stack developer building Warm, a personal finance dashboard, and the co-founder of Proton, the end-to-end encrypted email service.">
+    <meta property="og:url" content="https://jasonstockman.com/">
+    <meta property="og:image" content="https://jasonstockman.com/assets/og.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:image:alt" content="Jason Stockman, Full Stack Developer">
+    <meta property="profile:first_name" content="Jason">
+    <meta property="profile:last_name" content="Stockman">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@jasonstockman">
+    <meta name="twitter:creator" content="@jasonstockman">
+    <meta name="twitter:title" content="Jason Stockman - Full Stack Developer in Pacifica, CA">
+    <meta name="twitter:description" content="Jason Stockman is a full stack developer building Warm, a personal finance dashboard, and the co-founder of Proton, the end-to-end encrypted email service.">
+    <meta name="twitter:image" content="https://jasonstockman.com/assets/og.png">
+    <meta name="twitter:image:alt" content="Jason Stockman, Full Stack Developer">
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"ProfilePage","url":"https://jasonstockman.com/","name":"Jason Stockman - Full Stack Developer in Pacifica, CA","description":"Jason Stockman is a full stack developer building Warm, a personal finance dashboard, and the co-founder of Proton, the end-to-end encrypted email service.","mainEntity":{"@type":"Person","name":"Jason Stockman","url":"https://jasonstockman.com/","image":"https://jasonstockman.com/me.webp","jobTitle":"Full Stack Developer","address":{"@type":"PostalAddress","addressLocality":"Pacifica","addressRegion":"CA","addressCountry":"US"},"sameAs":["https://x.com/jasonstockman","https://linkedin.com/in/jasonstockman"]}}</script>
     <style>
         :root {
             --text-color: #1f2937;
@@ -32,6 +60,8 @@
             color: var(--text-color);
             line-height: 1.5;
             min-height: 100vh;
+            display: flex;
+            flex-direction: column;
         }
         html[data-theme="dark"] body {
             background: linear-gradient(135deg, #0f172a 0%, #111827 35%, #0f1520 65%, #101a2e 100%);
@@ -42,7 +72,7 @@
         hr { border: none; border-top: 1px solid var(--border-color); }
 
         /* Layout */
-        .container { max-width: 36rem; margin: 0 auto; padding: 2rem 1.5rem; position: relative; }
+        .container { width: 100%; max-width: 36rem; margin: 0 auto; padding: 2rem 1.5rem; position: relative; }
         .flex { display: flex; }
         .flex-col { flex-direction: column; }
         .items-start { align-items: flex-start; }
@@ -106,7 +136,21 @@
         .email > span:nth-child(5) { display: none; }
 
         /* Footer */
-        footer { width: 100%; max-width: 36rem; margin: 0 auto; padding: 1.5rem; }
+        footer { width: 100%; margin-top: auto; }
+        .footer-inner { position: relative; z-index: 1; max-width: 36rem; margin: 0 auto; padding: 1.5rem; }
+        .footer-metal {
+            position: relative;
+            height: 40vh;
+            margin-top: -6vh;
+            overflow: hidden;
+            opacity: 0.5;
+            transition: opacity 0.3s;
+        }
+        .footer-metal-stage { position: absolute; left: 0; right: 0; pointer-events: none; }
+        .footer-metal-back { height: 120vh; bottom: -79vh; }
+        .footer-metal-front { height: 60vh; bottom: -39vh; }
+        .footer-metal:hover { opacity: 1; }
+        .footer-metal canvas { position: absolute; inset: 0; width: 100%; height: 100%; }
         .footer-content {
             display: flex;
             justify-content: space-between;
@@ -141,9 +185,8 @@
         // Apply saved theme immediately to prevent flash
         (function() {
             var saved = localStorage.getItem('theme');
-            if (saved === 'dark' || (!saved && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
-                document.documentElement.setAttribute('data-theme', 'dark');
-            }
+            var dark = saved === 'dark' || (!saved && window.matchMedia('(prefers-color-scheme: dark)').matches);
+            document.documentElement.setAttribute('data-theme', dark ? 'dark' : 'light');
         })();
     </script>
 </head>
@@ -163,7 +206,7 @@
         <!-- Header -->
         <header class="flex items-start justify-between mb-6">
             <div class="flex gap-4">
-                <img src="me.webp" alt="Profile" class="avatar" width="80" height="80">
+                <img src="me.webp" alt="Jason Stockman" class="avatar" width="80" height="80">
                 <div>
                     <h1 class="text-xl font-semibold">Jason Stockman</h1>
                     <p class="text-muted">Full Stack Developer</p>
@@ -180,7 +223,7 @@
 
         <!-- Contact Bar -->
         <div class="flex justify-between items-center py-4 border-t text-sm text-muted">
-            <a class="flex items-center gap-1-5">
+            <div class="flex items-center gap-1-5">
                 <svg class="icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
                 </svg>
@@ -191,15 +234,15 @@
                     <span>me</span>
                     <span>.com</span>
                 </span>
-            </a>
+            </div>
             <div class="flex gap-4">
-                <a href="https://x.com/jasonstockman" target="_blank" class="flex items-center gap-1-5">
+                <a href="https://x.com/jasonstockman" target="_blank" rel="me noopener" class="flex items-center gap-1-5">
                     <svg class="icon" fill="currentColor" viewBox="0 0 24 24">
                         <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
                     </svg>
                     Twitter
                 </a>
-                <a href="https://linkedin.com/in/jasonstockman" target="_blank" class="flex items-center gap-1-5">
+                <a href="https://linkedin.com/in/jasonstockman" target="_blank" rel="me noopener" class="flex items-center gap-1-5">
                     <svg class="icon" fill="currentColor" viewBox="0 0 24 24">
                         <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
                     </svg>
@@ -216,10 +259,10 @@
                 <p>I'm currently <span id="age">38</span> years old and live in Pacifica, California - roughly 20 minutes south of San Francisco.</p>
                 <p>I've been building websites for over <strong id="years">22</strong> years now, and along the way I've had the good fortune to work with some amazing people.</p>
                 <hr>
-                <p>Today, I'm building <a href="https://warm.io" target="_blank" class="link">Warm</a>, a personal financial dashboard.</p>
+                <p>Today, I'm building <a href="https://warm.io" target="_blank" rel="noopener" class="link">Warm</a>, a personal financial dashboard.</p>
                 <p>Our mission is to make navigating your finances easy and stress-free.</p>
                 <hr>
-                <p>Previously, I co-founded <a href="https://proton.me" target="_blank" class="link">Proton</a>, an end-to-end encrypted email service.</p>
+                <p>Previously, I co-founded <a href="https://proton.me" target="_blank" rel="noopener" class="link">Proton</a>, an end-to-end encrypted email service.</p>
                 <p>Our mission with Proton is to make encryption and privacy accessible.</p>
             </div>
         </section>
@@ -228,12 +271,18 @@
 
     <!-- Footer -->
     <footer>
-        <div class="border-t pt-6">
-            <div class="footer-content text-light text-sm">
-                <p>Designed with &#x1FAF0; in Pacifica, CA</p>
-                <a href="pixel-chopper.html" class="tiny-footer-link" rel="nofollow" aria-label="Pixel Chopper">ttc</a>
-                <p>&copy; Copyright <span id="year">2026</span></p>
+        <div class="footer-inner">
+            <div class="border-t pt-6">
+                <div class="footer-content text-light text-sm">
+                    <p>Designed with &#x1FAF0; in Pacifica, CA</p>
+                    <a href="pixel-chopper.html" class="tiny-footer-link" rel="nofollow" aria-label="ttc Pixel Chopper">ttc</a>
+                    <p>&copy; Copyright <span id="year">2026</span></p>
+                </div>
             </div>
+        </div>
+        <div class="footer-metal" aria-hidden="true">
+            <div class="footer-metal-stage footer-metal-back"><canvas></canvas></div>
+            <div class="footer-metal-stage footer-metal-front"><canvas></canvas></div>
         </div>
     </footer>
 
@@ -249,13 +298,30 @@
         document.querySelector('.theme-toggle').addEventListener('click', function() {
             var isDark = document.documentElement.getAttribute('data-theme') === 'dark';
             if (isDark) {
-                document.documentElement.removeAttribute('data-theme');
+                document.documentElement.setAttribute('data-theme', 'light');
                 localStorage.setItem('theme', 'light');
             } else {
                 document.documentElement.setAttribute('data-theme', 'dark');
                 localStorage.setItem('theme', 'dark');
             }
         });
+    </script>
+    <script type="module">
+        import { createShaderMetal } from './assets/shader-metal.js';
+        const palette = {
+            light: {
+                stops: ['#1e3a5f', '#2563eb', '#3b8fc4', '#9ac8e0', '#dce8f0', '#d6c8ae', '#e9e1d0', '#1d5fa8'],
+                accents: ['#8a5a36', '#e08a3c', '#7c6bb3']
+            },
+            dark: {
+                stops: ['#13203a', '#1a2b4a', '#1e3a5f', '#2b5a8a', '#93bbfd', '#1e3a5f', '#172a46', '#3b7bb8'],
+                accents: ['#6a4a30', '#b9743c', '#5a4f9c']
+            }
+        };
+        for (const [selector, speed] of [['.footer-metal-back', -0.055], ['.footer-metal-front', 0.11]]) {
+            const stage = document.querySelector(selector);
+            if (!createShaderMetal(stage.querySelector('canvas'), { metal: 'graphite', speed, iridescence: 1, palette })) stage.remove();
+        }
     </script>
 </body>
 </html>
