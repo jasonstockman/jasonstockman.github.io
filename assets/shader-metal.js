@@ -28,7 +28,7 @@ uniform vec2 u_light;
 uniform vec3 u_f0;
 
 const float TAU = 6.28318530718;
-const float TILT = -0.32;
+const float TILT = -0.06;
 
 float hash(vec2 p) {
   vec3 p3 = fract(vec3(p.xyx) * 0.1031);
