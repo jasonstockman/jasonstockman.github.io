@@ -106,7 +106,17 @@
         .email > span:nth-child(5) { display: none; }
 
         /* Footer */
-        footer { width: 100%; max-width: 36rem; margin: 0 auto; padding: 1.5rem; }
+        footer { width: 100%; }
+        .footer-inner { max-width: 36rem; margin: 0 auto; padding: 1.5rem; }
+        .footer-metal {
+            position: relative;
+            height: 18rem;
+            overflow: hidden;
+            pointer-events: none;
+            -webkit-mask-image: linear-gradient(to bottom, transparent, #000 30%, #000 75%, transparent);
+            mask-image: linear-gradient(to bottom, transparent, #000 30%, #000 75%, transparent);
+        }
+        .footer-metal canvas { position: absolute; inset: 0; width: 100%; height: 100%; }
         .footer-content {
             display: flex;
             justify-content: space-between;
@@ -141,9 +151,8 @@
         // Apply saved theme immediately to prevent flash
         (function() {
             var saved = localStorage.getItem('theme');
-            if (saved === 'dark' || (!saved && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
-                document.documentElement.setAttribute('data-theme', 'dark');
-            }
+            var dark = saved === 'dark' || (!saved && window.matchMedia('(prefers-color-scheme: dark)').matches);
+            document.documentElement.setAttribute('data-theme', dark ? 'dark' : 'light');
         })();
     </script>
 </head>
@@ -228,13 +237,16 @@
 
     <!-- Footer -->
     <footer>
-        <div class="border-t pt-6">
-            <div class="footer-content text-light text-sm">
-                <p>Designed with &#x1FAF0; in Pacifica, CA</p>
-                <a href="pixel-chopper.html" class="tiny-footer-link" rel="nofollow" aria-label="Pixel Chopper">ttc</a>
-                <p>&copy; Copyright <span id="year">2026</span></p>
+        <div class="footer-inner">
+            <div class="border-t pt-6">
+                <div class="footer-content text-light text-sm">
+                    <p>Designed with &#x1FAF0; in Pacifica, CA</p>
+                    <a href="pixel-chopper.html" class="tiny-footer-link" rel="nofollow" aria-label="Pixel Chopper">ttc</a>
+                    <p>&copy; Copyright <span id="year">2026</span></p>
+                </div>
             </div>
         </div>
+        <div class="footer-metal" aria-hidden="true"><canvas></canvas></div>
     </footer>
 
     <script>
@@ -249,13 +261,19 @@
         document.querySelector('.theme-toggle').addEventListener('click', function() {
             var isDark = document.documentElement.getAttribute('data-theme') === 'dark';
             if (isDark) {
-                document.documentElement.removeAttribute('data-theme');
+                document.documentElement.setAttribute('data-theme', 'light');
                 localStorage.setItem('theme', 'light');
             } else {
                 document.documentElement.setAttribute('data-theme', 'dark');
                 localStorage.setItem('theme', 'dark');
             }
         });
+    </script>
+    <script type="module">
+        import { createShaderMetal } from './assets/shader-metal.js';
+        const band = document.querySelector('.footer-metal');
+        const metal = createShaderMetal(band.querySelector('canvas'), { metal: 'graphite', speed: 1, iridescence: 1 });
+        if (!metal) band.remove();
     </script>
 </body>
 </html>
