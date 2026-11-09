@@ -112,7 +112,7 @@
         .footer-inner { max-width: 36rem; margin: 0 auto; padding: 1.5rem; }
         .footer-metal {
             position: relative;
-            height: 11rem;
+            height: 5vh;
             overflow: hidden;
             pointer-events: none;
             -webkit-mask-image: linear-gradient(to bottom, transparent, #000 20%);
@@ -275,7 +275,7 @@
     <script type="module">
         import { createShaderMetal } from './assets/shader-metal.js';
         const band = document.querySelector('.footer-metal');
-        const metal = createShaderMetal(band.querySelector('canvas'), { metal: 'graphite', speed: 1, iridescence: 1 });
+        const metal = createShaderMetal(band.querySelector('canvas'), { metal: 'graphite', speed: 0.4, iridescence: 1 });
         if (!metal) band.remove();
     </script>
 </body>

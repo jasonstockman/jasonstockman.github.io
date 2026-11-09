@@ -28,7 +28,8 @@ uniform vec2 u_light;
 uniform vec3 u_f0;
 
 const float TAU = 6.28318530718;
-const float TILT = -0.06;
+const float TILT = -0.01;
+const float STRETCH = 0.3;
 
 float hash(vec2 p) {
   vec3 p3 = fract(vec3(p.xyx) * 0.1031);
@@ -102,6 +103,8 @@ void main() {
   float px = 1.0 / u_resolution.y;
   vec2 p = rotate((frag - 0.5 * u_resolution) * px, TILT);
   vec2 m = rotate((u_mouse - 0.5) * u_resolution * px, TILT);
+  p.x *= STRETCH;
+  m.x *= STRETCH;
   float t = u_time;
 
   vec3 L = normalize(vec3(u_light, 0.85));
@@ -344,7 +347,7 @@ function createShaderMetal(canvas, initial = {}) {
     const h = parent.clientHeight;
     if (w <= 0 || h <= 0)
       return false;
-    const ratio = Math.min(window.devicePixelRatio || 1, 2, Math.sqrt(MAX_PIXELS / (w * h)));
+    const ratio = Math.min(2, Math.sqrt(MAX_PIXELS / (w * h)));
     const width = Math.max(1, Math.floor(w * ratio));
     const height = Math.max(1, Math.floor(h * ratio));
     canvas.style.width = `${w}px`;
