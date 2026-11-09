@@ -112,13 +112,15 @@
         .footer-inner { max-width: 36rem; margin: 0 auto; padding: 1.5rem; }
         .footer-metal {
             position: relative;
-            height: 10vh;
+            height: 15vh;
             overflow: hidden;
             pointer-events: none;
             -webkit-mask-image: linear-gradient(to bottom, transparent, #000 20%);
             mask-image: linear-gradient(to bottom, transparent, #000 20%);
         }
-        .footer-metal-stage { position: absolute; top: 0; left: 0; right: 0; height: 200%; }
+        .footer-metal-stage { position: absolute; left: 0; right: 0; }
+        .footer-metal-back { height: 30vh; bottom: -15vh; }
+        .footer-metal-front { height: 20vh; bottom: -10vh; }
         .footer-metal canvas { position: absolute; inset: 0; width: 100%; height: 100%; }
         .footer-content {
             display: flex;
@@ -249,7 +251,10 @@
                 </div>
             </div>
         </div>
-        <div class="footer-metal" aria-hidden="true"><div class="footer-metal-stage"><canvas></canvas></div></div>
+        <div class="footer-metal" aria-hidden="true">
+            <div class="footer-metal-stage footer-metal-back"><canvas></canvas></div>
+            <div class="footer-metal-stage footer-metal-front"><canvas></canvas></div>
+        </div>
     </footer>
 
     <script>
@@ -274,9 +279,10 @@
     </script>
     <script type="module">
         import { createShaderMetal } from './assets/shader-metal.js';
-        const band = document.querySelector('.footer-metal');
-        const metal = createShaderMetal(band.querySelector('canvas'), { metal: 'graphite', speed: 0.4, iridescence: 1 });
-        if (!metal) band.remove();
+        for (const [selector, speed] of [['.footer-metal-back', -0.4], ['.footer-metal-front', 0.4]]) {
+            const stage = document.querySelector(selector);
+            if (!createShaderMetal(stage.querySelector('canvas'), { metal: 'graphite', speed, iridescence: 1 })) stage.remove();
+        }
     </script>
 </body>
 </html>

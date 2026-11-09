@@ -402,7 +402,7 @@ function createShaderMetal(canvas, initial = {}) {
     pull += (pullTarget - pull) * ease(2.5);
     darkMix += ((dark ? 1 : 0) - darkMix) * ease(6);
     syncMetal();
-    const speed = numberOr(options.speed, DEFAULT_SPEED, 0, 4);
+    const speed = numberOr(options.speed, DEFAULT_SPEED, -4, 4);
     gl.uniform2f(uResolution, canvas.width, canvas.height);
     gl.uniform1f(uTime, clock * speed * 3 + 11);
     gl.uniform1f(uCount, Math.round(numberOr(options.ribbons, DEFAULT_RIBBONS, 1, 5)));
