@@ -6,29 +6,29 @@
     <title>Jason Stockman - Full Stack Developer</title>
     <style>
         :root {
-            --text-color: #0b3d5c;
-            --text-muted: #3f6478;
-            --text-light: #6b8594;
-            --border-color: #e0d3bb;
-            --card-bg: #fbf7ef;
-            --accent: #0f6f8f;
-            --toggle-bg: rgba(11,61,92,0.07);
-            --toggle-hover: rgba(11,61,92,0.13);
+            --text-color: #1f2937;
+            --text-muted: #6b7280;
+            --text-light: #9ca3af;
+            --border-color: #e5e7eb;
+            --card-bg: #f9fafb;
+            --accent: #2563eb;
+            --toggle-bg: rgba(0,0,0,0.06);
+            --toggle-hover: rgba(0,0,0,0.1);
         }
         html[data-theme="dark"] {
-            --text-color: #dbe9f2;
-            --text-muted: #9db4c4;
-            --text-light: #708aa0;
-            --border-color: #15304a;
-            --card-bg: #0e2740;
-            --accent: #6cc4e0;
-            --toggle-bg: rgba(108,196,224,0.1);
-            --toggle-hover: rgba(108,196,224,0.18);
+            --text-color: #e2e8f0;
+            --text-muted: #94a3b8;
+            --text-light: #64748b;
+            --border-color: #1e293b;
+            --card-bg: #1e293b;
+            --accent: #93bbfd;
+            --toggle-bg: rgba(255,255,255,0.08);
+            --toggle-hover: rgba(255,255,255,0.14);
         }
         *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
         body {
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
-            background: linear-gradient(135deg, #fbf7ef 0%, #f5eee1 35%, #efe6d5 65%, #f8f2e6 100%);
+            background: linear-gradient(135deg, #fafafa 0%, #f5f5f4 35%, #f0f0ee 65%, #fafaf8 100%);
             color: var(--text-color);
             line-height: 1.5;
             min-height: 100vh;
@@ -36,7 +36,7 @@
             flex-direction: column;
         }
         html[data-theme="dark"] body {
-            background: linear-gradient(135deg, #061524 0%, #08192b 35%, #0a2036 65%, #071a2d 100%);
+            background: linear-gradient(135deg, #0f172a 0%, #111827 35%, #0f1520 65%, #101a2e 100%);
         }
         a { color: inherit; text-decoration: none; }
         a:hover { opacity: 0.8; }
@@ -112,15 +112,17 @@
         .footer-inner { max-width: 36rem; margin: 0 auto; padding: 1.5rem; }
         .footer-metal {
             position: relative;
-            height: 38vh;
+            height: 28vh;
             overflow: hidden;
-            pointer-events: none;
+            opacity: 0.5;
+            transition: opacity 0.3s;
             -webkit-mask-image: linear-gradient(to bottom, transparent, #000 5%);
             mask-image: linear-gradient(to bottom, transparent, #000 5%);
         }
-        .footer-metal-stage { position: absolute; left: 0; right: 0; }
-        .footer-metal-back { height: 120vh; bottom: -74vh; }
-        .footer-metal-front { height: 60vh; bottom: -35vh; }
+        .footer-metal-stage { position: absolute; left: 0; right: 0; pointer-events: none; }
+        .footer-metal-back { height: 120vh; bottom: -84vh; }
+        .footer-metal-front { height: 60vh; bottom: -43vh; }
+        .footer-metal:hover { opacity: 1; }
         .footer-metal canvas { position: absolute; inset: 0; width: 100%; height: 100%; }
         .footer-content {
             display: flex;
@@ -281,11 +283,11 @@
         import { createShaderMetal } from './assets/shader-metal.js';
         const palette = {
             light: {
-                stops: ['#0b3d5c', '#0f6f8f', '#3aa0b8', '#9ad0d6', '#f5eee1', '#d6c19a', '#e9dcc2', '#1c6e8c'],
+                stops: ['#1e3a5f', '#2563eb', '#3b8fc4', '#9ac8e0', '#f5f5f4', '#d6c8ae', '#e9e1d0', '#1d5fa8'],
                 accents: ['#8a5a36', '#e08a3c', '#7c6bb3']
             },
             dark: {
-                stops: ['#030d1a', '#0a2036', '#0f3a5c', '#17607f', '#6cc4e0', '#0f3a5c', '#0a2a47', '#2a8aa3'],
+                stops: ['#0b1220', '#0f172a', '#1e3a5f', '#2b5a8a', '#93bbfd', '#1e3a5f', '#172a46', '#3b7bb8'],
                 accents: ['#6a4a30', '#b9743c', '#5a4f9c']
             }
         };
