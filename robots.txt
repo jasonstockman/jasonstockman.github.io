@@ -1,3 +1,5 @@
 User-agent: *
 Disallow: /pixel-chopper.html
 Disallow: /assets/pixel-chopper/
+
+Sitemap: https://jasonstockman.com/sitemap.xml
