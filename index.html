@@ -112,14 +112,14 @@
         .footer-inner { max-width: 36rem; margin: 0 auto; padding: 1.5rem; }
         .footer-metal {
             position: relative;
-            height: 14vh;
+            height: 25vh;
             overflow: hidden;
             pointer-events: none;
-            -webkit-mask-image: linear-gradient(to bottom, transparent, #000 20%);
-            mask-image: linear-gradient(to bottom, transparent, #000 20%);
+            -webkit-mask-image: linear-gradient(to bottom, transparent, #000 10%);
+            mask-image: linear-gradient(to bottom, transparent, #000 10%);
         }
         .footer-metal-stage { position: absolute; left: 0; right: 0; }
-        .footer-metal-stage { height: 40vh; bottom: -26vh; }
+        .footer-metal-stage { height: 60vh; bottom: -35vh; }
         .footer-metal canvas { position: absolute; inset: 0; width: 100%; height: 100%; }
         .footer-content {
             display: flex;
@@ -278,7 +278,7 @@
     </script>
     <script type="module">
         import { createShaderMetal } from './assets/shader-metal.js';
-        for (const [selector, speed] of [['.footer-metal-back', -0.25], ['.footer-metal-front', 0.5]]) {
+        for (const [selector, speed] of [['.footer-metal-back', -0.12], ['.footer-metal-front', 0.22]]) {
             const stage = document.querySelector(selector);
             if (!createShaderMetal(stage.querySelector('canvas'), { metal: 'graphite', speed, iridescence: 1 })) stage.remove();
         }

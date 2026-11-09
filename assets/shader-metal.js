@@ -22,6 +22,7 @@ uniform float u_time;
 uniform float u_count;
 uniform float u_iridescence;
 uniform float u_pull;
+uniform float u_stir;
 uniform float u_dark;
 uniform vec2 u_mouse;
 uniform vec2 u_light;
@@ -29,7 +30,7 @@ uniform vec3 u_f0;
 
 const float TAU = 6.28318530718;
 const float TILT = -0.01;
-const float STRETCH = 0.9;
+const float STRETCH = 1.35;
 
 float hash(vec2 p) {
   vec3 p3 = fract(vec3(p.xyx) * 0.1031);
@@ -55,8 +56,9 @@ float spine(float x, float k, float lane, float t, vec2 m) {
   y += 0.13 * sin(1.15 * x + 0.55 * t + 2.1 * k);
   y += 0.06 * sin(2.6 * x - 0.8 * t + 1.3 * k + 0.7);
   y += 0.025 * sin(5.3 * x + 1.3 * t + 4.0 * k);
-  float near = exp(-(x - m.x) * (x - m.x) * 5.0);
-  y += (m.y - y) * 0.22 * u_pull * near;
+  float near = exp(-(x - m.x) * (x - m.x) * 3.5);
+  y += (m.y - y) * 0.55 * u_pull * near;
+  y += u_stir * 0.09 * near * sin(x * 11.0 - t * 5.0 + k * 2.0);
   return y;
 }
 
@@ -262,6 +264,8 @@ function createShaderMetal(canvas, initial = {}) {
   const lightTarget = { ...REST_LIGHT };
   let pull = 0;
   let pullTarget = 0;
+  let stir = 0;
+  let stirTarget = 0;
   let dark = resolveDark(options.theme ?? "auto");
   let darkMix = dark ? 1 : 0;
   options.onThemeChange?.(dark);
@@ -285,6 +289,7 @@ function createShaderMetal(canvas, initial = {}) {
   let uIridescence = null;
   let uPull = null;
   let uDark = null;
+  let uStir = null;
   let uMouse = null;
   let uLight = null;
   let uF0 = null;
@@ -331,6 +336,7 @@ function createShaderMetal(canvas, initial = {}) {
     uCount = u("u_count");
     uIridescence = u("u_iridescence");
     uPull = u("u_pull");
+    uStir = u("u_stir");
     uDark = u("u_dark");
     uMouse = u("u_mouse");
     uLight = u("u_light");
@@ -382,7 +388,7 @@ function createShaderMetal(canvas, initial = {}) {
     last = performance.now();
     raf = requestAnimationFrame(tick);
   }
-  const settling = () => Math.abs(target.x - mouse.x) > 0.001 || Math.abs(target.y - mouse.y) > 0.001 || Math.abs(lightTarget.x - light.x) > 0.001 || Math.abs(lightTarget.y - light.y) > 0.001 || Math.abs(pullTarget - pull) > 0.001 || Math.abs((dark ? 1 : 0) - darkMix) > 0.001;
+  const settling = () => Math.abs(target.x - mouse.x) > 0.001 || Math.abs(target.y - mouse.y) > 0.001 || Math.abs(lightTarget.x - light.x) > 0.001 || Math.abs(lightTarget.y - light.y) > 0.001 || Math.abs(pullTarget - pull) > 0.001 || stirTarget > 0.001 || stir > 0.001 || Math.abs((dark ? 1 : 0) - darkMix) > 0.001;
   const tick = (now) => {
     raf = 0;
     if (lost)
@@ -395,11 +401,13 @@ function createShaderMetal(canvas, initial = {}) {
     if (flowing)
       clock += dt;
     const ease = (rate) => 1 - Math.exp(-dt * rate);
-    mouse.x += (target.x - mouse.x) * ease(3);
-    mouse.y += (target.y - mouse.y) * ease(3);
+    mouse.x += (target.x - mouse.x) * ease(6);
+    mouse.y += (target.y - mouse.y) * ease(6);
     light.x += (lightTarget.x - light.x) * ease(5);
     light.y += (lightTarget.y - light.y) * ease(5);
-    pull += (pullTarget - pull) * ease(2.5);
+    pull += (pullTarget - pull) * ease(5);
+    stirTarget *= Math.exp(-dt * 1.5);
+    stir += (stirTarget - stir) * ease(8);
     darkMix += ((dark ? 1 : 0) - darkMix) * ease(6);
     syncMetal();
     const speed = numberOr(options.speed, DEFAULT_SPEED, -4, 4);
@@ -409,6 +417,7 @@ function createShaderMetal(canvas, initial = {}) {
     gl.uniform1f(uIridescence, numberOr(options.iridescence, DEFAULT_IRIDESCENCE, 0, 1));
     gl.uniform1f(uPull, options.interactive === false ? 0 : pull);
     gl.uniform1f(uDark, darkMix);
+    gl.uniform1f(uStir, options.interactive === false ? 0 : stir);
     gl.uniform2f(uMouse, mouse.x, mouse.y);
     gl.uniform2f(uLight, light.x, light.y);
     gl.clearColor(0, 0, 0, 0);
@@ -455,27 +464,35 @@ function createShaderMetal(canvas, initial = {}) {
   });
   const mqDark = window.matchMedia("(prefers-color-scheme: dark)");
   mqDark.addEventListener("change", syncTheme);
+  let lastPointer = null;
   const onMove = (e) => {
     if (options.interactive === false)
       return;
     const rect = canvas.getBoundingClientRect();
     if (rect.width <= 0 || rect.height <= 0)
       return;
-    const x = (e.clientX - rect.left) / rect.width;
-    const y = 1 - (e.clientY - rect.top) / rect.height;
-    const inside = x >= 0 && x <= 1 && y >= 0 && y <= 1;
-    pullTarget = inside ? 1 : 0;
-    if (inside) {
-      target.x = x;
-      target.y = y;
-      lightTarget.x = (x * 2 - 1) * 0.9;
-      lightTarget.y = (y * 2 - 1) * 0.9;
-    } else {
-      lightTarget.x = REST_LIGHT.x;
-      lightTarget.y = REST_LIGHT.y;
+    const x = clamp((e.clientX - rect.left) / rect.width, 0, 1);
+    const y = clamp(1 - (e.clientY - rect.top) / rect.height, 0, 1);
+    const gap = Math.max(0, rect.top - e.clientY);
+    pullTarget = 0.35 + 0.65 * Math.max(0, 1 - gap / (window.innerHeight * 0.6));
+    target.x = x;
+    target.y = y;
+    lightTarget.x = (x * 2 - 1) * 0.9;
+    lightTarget.y = (y * 2 - 1) * 0.9;
+    if (lastPointer && !mqReduce.matches) {
+      stirTarget = Math.min(1, stirTarget + Math.hypot(e.clientX - lastPointer.x, e.clientY - lastPointer.y) / 250);
     }
+    lastPointer = { x: e.clientX, y: e.clientY };
     wake();
   };
+  const onLeave = () => {
+    pullTarget = 0;
+    lightTarget.x = REST_LIGHT.x;
+    lightTarget.y = REST_LIGHT.y;
+    lastPointer = null;
+    wake();
+  };
+  document.documentElement.addEventListener("pointerleave", onLeave);
   window.addEventListener("pointermove", onMove, { passive: true });
   const onLost = (e) => {
     e.preventDefault();
@@ -517,6 +534,7 @@ function createShaderMetal(canvas, initial = {}) {
       mqReduce.removeEventListener("change", onReduce);
       mqDark.removeEventListener("change", syncTheme);
       window.removeEventListener("pointermove", onMove);
+      document.documentElement.removeEventListener("pointerleave", onLeave);
       canvas.removeEventListener("webglcontextlost", onLost);
       canvas.removeEventListener("webglcontextrestored", onRestored);
       gl.deleteProgram(program);
