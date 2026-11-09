@@ -109,15 +109,14 @@
 
         /* Footer */
         footer { width: 100%; margin-top: auto; }
-        .footer-inner { max-width: 36rem; margin: 0 auto; padding: 1.5rem; }
+        .footer-inner { position: relative; z-index: 1; max-width: 36rem; margin: 0 auto; padding: 1.5rem; }
         .footer-metal {
             position: relative;
-            height: 28vh;
+            height: 40vh;
+            margin-top: -12vh;
             overflow: hidden;
             opacity: 0.5;
             transition: opacity 0.3s;
-            -webkit-mask-image: linear-gradient(to bottom, transparent, #000 5%);
-            mask-image: linear-gradient(to bottom, transparent, #000 5%);
         }
         .footer-metal-stage { position: absolute; left: 0; right: 0; pointer-events: none; }
         .footer-metal-back { height: 120vh; bottom: -84vh; }
@@ -291,7 +290,7 @@
                 accents: ['#6a4a30', '#b9743c', '#5a4f9c']
             }
         };
-        for (const [selector, speed] of [['.footer-metal-back', -0.11], ['.footer-metal-front', 0.22]]) {
+        for (const [selector, speed] of [['.footer-metal-back', -0.055], ['.footer-metal-front', 0.11]]) {
             const stage = document.querySelector(selector);
             if (!createShaderMetal(stage.querySelector('canvas'), { metal: 'graphite', speed, iridescence: 1, palette })) stage.remove();
         }
