@@ -358,7 +358,7 @@
             width: 100%;
             margin-top: auto;
             flex: 1 0 auto;
-            min-height: clamp(5rem, 14vh, 7.5rem);
+            min-height: clamp(4rem, 12vh, 7.5rem);
             max-height: 22rem;
             overflow: hidden;
             opacity: 0.5;
@@ -460,7 +460,8 @@
     </style>
     <script>
         (function() {
-            var saved = localStorage.getItem('theme');
+            var saved = null;
+            try { saved = localStorage.getItem('theme'); } catch {}
             var dark = saved === 'dark' || (!saved && window.matchMedia('(prefers-color-scheme: dark)').matches);
             document.documentElement.setAttribute('data-theme', dark ? 'dark' : 'light');
         })();
@@ -914,14 +915,15 @@
 
         const toggleBtn = document.querySelector('.theme-toggle');
         const mqReduce = window.matchMedia('(prefers-reduced-motion: reduce)');
+        let currentTheme = document.documentElement.getAttribute('data-theme') === 'dark' ? 'dark' : 'light';
         let activeTransition = null;
         let fallbackTimer = 0;
 
         toggleBtn.addEventListener('click', () => {
             const root = document.documentElement;
-            const isDark = root.getAttribute('data-theme') === 'dark';
-            const nextTheme = isDark ? 'light' : 'dark';
-            localStorage.setItem('theme', nextTheme);
+            currentTheme = currentTheme === 'dark' ? 'light' : 'dark';
+            const nextTheme = currentTheme;
+            try { localStorage.setItem('theme', nextTheme); } catch {}
 
             const applyTheme = () => {
                 root.setAttribute('data-theme', nextTheme);
