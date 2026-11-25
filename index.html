@@ -839,7 +839,7 @@
                     }
                     ctx.globalAlpha = 1;
 
-                    if (moving || hovered) {
+                    if (moving) {
                         animRaf = requestAnimationFrame(renderMorph);
                     }
                 };
@@ -931,7 +931,11 @@
             if (mqReduce.matches || typeof document.startViewTransition !== 'function') {
                 clearTimeout(fallbackTimer);
                 root.classList.add('theme-transitioning');
-                applyTheme();
+                if (mqReduce.matches) {
+                    applyTheme();
+                } else {
+                    root.setAttribute('data-theme', nextTheme);
+                }
                 fallbackTimer = setTimeout(() => {
                     root.classList.remove('theme-transitioning');
                 }, mqReduce.matches ? 220 : 620);
