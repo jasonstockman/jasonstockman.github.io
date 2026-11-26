@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Jason Stockman - Full Stack Developer in Pacifica, CA</title>
-    <meta name="description" content="Jason Stockman is a full stack developer building Warm, a personal finance dashboard, and the co-founder of Proton, the end-to-end encrypted email service.">
+    <title>Jason Stockman - Founder &amp; Builder in Pacifica, CA</title>
+    <meta name="description" content="Jason Stockman is a founder and builder creating Warm, a personal financial dashboard, and the co-founder of Proton, the end-to-end encrypted email service.">
     <meta name="author" content="Jason Stockman">
     <meta name="robots" content="index, follow, max-image-preview:large">
     <meta name="theme-color" content="#fafafa" media="(prefers-color-scheme: light)">
@@ -15,23 +15,23 @@
     <meta property="og:type" content="profile">
     <meta property="og:site_name" content="Jason Stockman">
     <meta property="og:locale" content="en_US">
-    <meta property="og:title" content="Jason Stockman - Full Stack Developer in Pacifica, CA">
-    <meta property="og:description" content="Jason Stockman is a full stack developer building Warm, a personal finance dashboard, and the co-founder of Proton, the end-to-end encrypted email service.">
+    <meta property="og:title" content="Jason Stockman - Founder &amp; Builder in Pacifica, CA">
+    <meta property="og:description" content="Jason Stockman is a founder and builder creating Warm, a personal financial dashboard, and the co-founder of Proton, the end-to-end encrypted email service.">
     <meta property="og:url" content="https://jasonstockman.com/">
     <meta property="og:image" content="https://jasonstockman.com/assets/og.png">
     <meta property="og:image:width" content="1200">
     <meta property="og:image:height" content="630">
-    <meta property="og:image:alt" content="Jason Stockman, Full Stack Developer">
+    <meta property="og:image:alt" content="Jason Stockman, Founder &amp; Builder">
     <meta property="profile:first_name" content="Jason">
     <meta property="profile:last_name" content="Stockman">
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:site" content="@jasonstockman">
     <meta name="twitter:creator" content="@jasonstockman">
-    <meta name="twitter:title" content="Jason Stockman - Full Stack Developer in Pacifica, CA">
-    <meta name="twitter:description" content="Jason Stockman is a full stack developer building Warm, a personal finance dashboard, and the co-founder of Proton, the end-to-end encrypted email service.">
+    <meta name="twitter:title" content="Jason Stockman - Founder &amp; Builder in Pacifica, CA">
+    <meta name="twitter:description" content="Jason Stockman is a founder and builder creating Warm, a personal financial dashboard, and the co-founder of Proton, the end-to-end encrypted email service.">
     <meta name="twitter:image" content="https://jasonstockman.com/assets/og.png">
-    <meta name="twitter:image:alt" content="Jason Stockman, Full Stack Developer">
-    <script type="application/ld+json">{"@context":"https://schema.org","@type":"ProfilePage","url":"https://jasonstockman.com/","name":"Jason Stockman - Full Stack Developer in Pacifica, CA","description":"Jason Stockman is a full stack developer building Warm, a personal finance dashboard, and the co-founder of Proton, the end-to-end encrypted email service.","mainEntity":{"@type":"Person","name":"Jason Stockman","url":"https://jasonstockman.com/","image":"https://jasonstockman.com/me.webp","jobTitle":"Full Stack Developer","address":{"@type":"PostalAddress","addressLocality":"Pacifica","addressRegion":"CA","addressCountry":"US"},"sameAs":["https://x.com/jasonstockman","https://linkedin.com/in/jasonstockman"]}}</script>
+    <meta name="twitter:image:alt" content="Jason Stockman, Founder &amp; Builder">
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"ProfilePage","url":"https://jasonstockman.com/","name":"Jason Stockman - Founder & Builder in Pacifica, CA","description":"Jason Stockman is a founder and builder creating Warm, a personal financial dashboard, and the co-founder of Proton, the end-to-end encrypted email service.","mainEntity":{"@type":"Person","name":"Jason Stockman","url":"https://jasonstockman.com/","image":"https://jasonstockman.com/me.webp","jobTitle":"Founder & Builder","address":{"@type":"PostalAddress","addressLocality":"Pacifica","addressRegion":"CA","addressCountry":"US"},"sameAs":["https://x.com/jasonstockman","https://linkedin.com/in/jasonstockman"]}}</script>
     <style>
         :root {
             --text-color: #1f2937;
@@ -42,6 +42,8 @@
             --accent: #2563eb;
             --toggle-bg: rgba(0,0,0,0.06);
             --toggle-hover: rgba(0,0,0,0.1);
+            --ease-out: cubic-bezier(0.23, 1, 0.32, 1);
+            --ease-theme: cubic-bezier(0.22, 1, 0.36, 1);
         }
         html[data-theme="dark"] {
             --text-color: #e2e8f0;
@@ -60,6 +62,7 @@
             color: var(--text-color);
             line-height: 1.5;
             min-height: 100vh;
+            min-height: 100dvh;
             display: flex;
             flex-direction: column;
         }
@@ -67,90 +70,258 @@
             background: linear-gradient(135deg, #0f172a 0%, #111827 35%, #0f1520 65%, #101a2e 100%);
         }
         a { color: inherit; text-decoration: none; }
-        a:hover { opacity: 0.8; }
         img { max-width: 100%; height: auto; }
         hr { border: none; border-top: 1px solid var(--border-color); }
 
-        /* Layout */
-        .container { width: 100%; max-width: 36rem; margin: 0 auto; padding: 2rem 1.5rem; position: relative; }
-        .flex { display: flex; }
-        .flex-col { flex-direction: column; }
-        .items-start { align-items: flex-start; }
-        .items-center { align-items: center; }
-        .justify-between { justify-content: space-between; }
-        .gap-1 { gap: 0.25rem; }
-        .gap-1-5 { gap: 0.375rem; }
-        .gap-2 { gap: 0.5rem; }
-        .gap-4 { gap: 1rem; }
-        .mb-4 { margin-bottom: 1rem; }
-        .mb-6 { margin-bottom: 1.5rem; }
-        .py-4 { padding-top: 1rem; padding-bottom: 1rem; }
-        .py-8 { padding-top: 2rem; padding-bottom: 2rem; }
-        .pt-6 { padding-top: 1.5rem; }
-        .space-y-4 > * + * { margin-top: 1rem; }
+        ::view-transition-old(root),
+        ::view-transition-new(root) {
+            animation: none;
+            mix-blend-mode: normal;
+        }
+        ::view-transition-old(root) { z-index: 1; }
+        ::view-transition-new(root) { z-index: 9999; }
 
-        /* Typography */
+        html.theme-transitioning,
+        html.theme-transitioning body,
+        html.theme-transitioning h1,
+        html.theme-transitioning h2,
+        html.theme-transitioning strong,
+        html.theme-transitioning p,
+        html.theme-transitioning a,
+        html.theme-transitioning button,
+        html.theme-transitioning hr,
+        html.theme-transitioning .border-t {
+            transition: color 600ms var(--ease-theme), background-color 600ms var(--ease-theme), border-color 600ms var(--ease-theme), opacity 200ms var(--ease-out);
+        }
+
+        .container {
+            width: 100%;
+            max-width: 36rem;
+            margin: 0 auto;
+            padding: clamp(1.25rem, 3.2vh, 2.5rem) 1.5rem 0;
+            position: relative;
+        }
+        .flex { display: flex; }
+        .items-center { align-items: center; }
+        .gap-1 { gap: 0.25rem; }
         .text-xl { font-size: 1.25rem; }
         .text-lg { font-size: 1.125rem; }
         .text-sm { font-size: 0.875rem; }
         .font-semibold { font-weight: 600; }
-        .leading-relaxed { line-height: 1.625; }
+        .leading-relaxed { line-height: 1.6; }
         h1, h2, strong { color: var(--text-color); }
         .text-muted { color: var(--text-muted); }
         .text-light { color: var(--text-light); }
-        .link { color: var(--accent); text-decoration: underline; }
-        .link:hover { opacity: 0.7; }
-
-        /* Components */
-        .avatar { width: 5rem; height: 5rem; border-radius: 1rem; object-fit: cover; }
-        .icon-sm { width: 0.75rem; height: 0.75rem; }
-        .icon { width: 1rem; height: 1rem; }
+        .link {
+            color: var(--accent);
+            text-decoration: underline;
+            transition: opacity 180ms ease;
+        }
+        @media (hover: hover) and (pointer: fine) {
+            .link:hover { opacity: 0.72; }
+        }
+        .icon-sm { width: 0.75rem; height: 0.75rem; flex: 0 0 auto; }
         .border-t { border-top: 1px solid var(--border-color); }
 
-        /* Theme toggle */
-        .theme-toggle {
+        .site-header {
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+            margin-bottom: clamp(1rem, 2.4vh, 1.5rem);
+        }
+        .avatar-wrap {
+            position: relative;
+            width: 5rem;
+            height: 5rem;
+            border-radius: 1rem;
+            overflow: hidden;
+            flex: 0 0 auto;
+            background: var(--card-bg);
+        }
+        .avatar {
+            display: block;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        .avatar-canvas {
             position: absolute;
-            top: 2rem;
-            right: 0;
-            width: 2.25rem;
-            height: 2.25rem;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+        }
+        .header-info {
+            flex: 1;
+            min-width: 0;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            gap: 0.125rem;
+        }
+        .header-top {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 0.75rem;
+            flex-wrap: nowrap;
+        }
+        .header-socials {
+            display: flex;
+            align-items: center;
+            gap: 0.25rem;
+            margin-top: 0.25rem;
+            margin-left: -0.375rem;
+        }
+        .icon-btn {
+            width: 1.75rem;
+            height: 1.75rem;
+            border-radius: 0.5rem;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-muted);
+            background: transparent;
+            transition: background-color 180ms ease, color 180ms ease, transform 160ms var(--ease-out);
+        }
+        .icon-btn svg { width: 1rem; height: 1rem; }
+        .icon-btn:active { transform: scale(0.95); }
+        .icon-btn:focus-visible,
+        .theme-toggle:focus-visible,
+        .audio-btn:focus-visible,
+        .tiny-footer-link:focus-visible {
+            outline: 2px solid var(--accent);
+            outline-offset: 2px;
+        }
+
+        .theme-toggle {
+            position: relative;
+            width: 2.125rem;
+            height: 2.125rem;
             border: none;
             border-radius: 0.5rem;
             background: var(--toggle-bg);
             color: var(--text-muted);
             cursor: pointer;
-            display: flex;
+            display: inline-flex;
             align-items: center;
             justify-content: center;
-            transition: background 0.2s;
-            z-index: 10;
+            flex: 0 0 auto;
+            transition: background-color 180ms ease, color 180ms ease, transform 160ms var(--ease-out);
         }
-        .theme-toggle:hover { background: var(--toggle-hover); }
-        .theme-toggle svg { width: 1.125rem; height: 1.125rem; }
-        .theme-toggle .icon-sun { display: none; }
-        html[data-theme="dark"] .theme-toggle .icon-moon { display: none; }
-        html[data-theme="dark"] .theme-toggle .icon-sun { display: block; }
+        .theme-toggle:active { transform: scale(0.95); }
+        .theme-toggle svg {
+            position: absolute;
+            width: 1.0625rem;
+            height: 1.0625rem;
+            transition: opacity 300ms var(--ease-out), transform 420ms var(--ease-out);
+        }
+        .theme-toggle .icon-moon {
+            opacity: 1;
+            transform: rotate(0deg) scale(1);
+        }
+        .theme-toggle .icon-sun {
+            opacity: 0;
+            transform: rotate(-75deg) scale(0.65);
+        }
+        html[data-theme="dark"] .theme-toggle .icon-moon {
+            opacity: 0;
+            transform: rotate(75deg) scale(0.65);
+        }
+        html[data-theme="dark"] .theme-toggle .icon-sun {
+            opacity: 1;
+            transform: rotate(0deg) scale(1);
+        }
 
-        /* Email obfuscation */
-        .email > span:nth-child(3),
-        .email > span:nth-child(5) { display: none; }
+        .about-section {
+            padding: clamp(1rem, 2.5vh, 1.75rem) 0;
+        }
+        .about-header {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-bottom: 0.875rem;
+        }
+        .about-body {
+            display: flex;
+            flex-direction: column;
+            gap: clamp(0.625rem, 1.3vh, 0.875rem);
+        }
 
-        /* Footer */
-        footer { width: 100%; margin-top: auto; }
-        .footer-inner { position: relative; z-index: 1; max-width: 36rem; margin: 0 auto; padding: 1.5rem; }
-        .footer-metal {
+        .audio-btn {
             position: relative;
-            height: 40vh;
-            margin-top: -6vh;
-            overflow: hidden;
-            opacity: 0.5;
-            transition: opacity 0.3s;
+            width: 1.375rem;
+            height: 1.375rem;
+            border: none;
+            border-radius: 9999px;
+            background: var(--toggle-bg);
+            color: var(--text-muted);
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            flex: 0 0 auto;
+            transition: background-color 180ms ease, color 180ms ease, transform 160ms var(--ease-out);
         }
-        .footer-metal-stage { position: absolute; left: 0; right: 0; pointer-events: none; }
-        .footer-metal-back { height: 120vh; bottom: -79vh; }
-        .footer-metal-front { height: 60vh; bottom: -39vh; }
-        .footer-metal:hover { opacity: 1; }
-        .footer-metal canvas { position: absolute; inset: 0; width: 100%; height: 100%; }
+        .audio-btn:active { transform: scale(0.95); }
+        .audio-btn.is-playing {
+            color: var(--accent);
+            background: var(--toggle-hover);
+        }
+        .audio-ring {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            transform: rotate(-90deg);
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 200ms ease;
+        }
+        .audio-btn.is-playing .audio-ring {
+            opacity: 1;
+        }
+        .audio-ring-track {
+            fill: none;
+            stroke: var(--border-color);
+            stroke-width: 2.5;
+        }
+        .audio-ring-fill {
+            fill: none;
+            stroke: var(--accent);
+            stroke-width: 2.5;
+            stroke-linecap: round;
+            stroke-dasharray: 87.965;
+            stroke-dashoffset: 87.965;
+        }
+        .audio-btn .icon-play,
+        .audio-btn .icon-pause {
+            position: relative;
+            width: 0.6875rem;
+            height: 0.6875rem;
+        }
+        .audio-btn .icon-play { transform: translateX(0.5px); }
+        .audio-btn .icon-pause { display: none; }
+        .audio-btn.is-playing .icon-play { display: none; }
+        .audio-btn.is-playing .icon-pause { display: block; }
+
+        footer {
+            width: 100%;
+            flex: 1 0 auto;
+            display: flex;
+            flex-direction: column;
+        }
+        .footer-inner {
+            position: relative;
+            z-index: 1;
+            width: 100%;
+            max-width: 36rem;
+            margin: 0 auto;
+            padding: 0 1.5rem clamp(0.75rem, 1.8vh, 1.25rem);
+        }
+        .footer-rule {
+            padding-top: clamp(0.875rem, 1.8vh, 1.25rem);
+        }
         .footer-content {
             display: flex;
             justify-content: space-between;
@@ -161,30 +332,117 @@
             display: inline-flex;
             align-items: center;
             justify-content: center;
-            min-width: 1.75rem;
-            min-height: 1.75rem;
+            width: 1.875rem;
+            height: 1.875rem;
             border-radius: 0.375rem;
             color: var(--text-light);
-            font-size: 0.6875rem;
-            line-height: 1;
             background: transparent;
-            transition: color 0.2s, background 0.2s, opacity 0.2s;
+            transition: color 180ms ease, background-color 180ms ease, transform 160ms var(--ease-out);
             flex: 0 0 auto;
         }
-        .tiny-footer-link:hover {
-            color: var(--accent);
-            background: var(--toggle-bg);
-            opacity: 1;
+        .tiny-footer-link svg {
+            width: 1.375rem;
+            height: 1.375rem;
         }
-        .tiny-footer-link:focus-visible {
-            outline: 2px solid var(--accent);
-            outline-offset: 2px;
+        .tiny-footer-link:active { transform: scale(0.95); }
+
+        .footer-metal {
+            position: relative;
+            width: 100%;
+            margin-top: auto;
+            flex: 1 0 auto;
+            min-height: clamp(3.5rem, 10vh, 7.5rem);
+            max-height: 22rem;
+            overflow: hidden;
+            opacity: 0.5;
+            transition: opacity 300ms ease;
+        }
+        .footer-metal-stage {
+            position: absolute;
+            left: 0;
+            right: 0;
+            pointer-events: none;
+        }
+        .footer-metal-back {
+            height: 260%;
+            bottom: -172%;
+        }
+        .footer-metal-front {
+            height: 150%;
+            bottom: -96%;
+        }
+        .footer-metal canvas {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+        }
+
+        @media (hover: hover) and (pointer: fine) {
+            .icon-btn:hover {
+                color: var(--text-color);
+                background: var(--toggle-bg);
+                opacity: 1;
+            }
+            .theme-toggle:hover {
+                background: var(--toggle-hover);
+                color: var(--text-color);
+            }
+            .audio-btn:hover {
+                background: var(--toggle-hover);
+                color: var(--accent);
+            }
+            .tiny-footer-link:hover {
+                color: var(--accent);
+                background: var(--toggle-bg);
+                opacity: 1;
+            }
+            .footer-metal:hover {
+                opacity: 1;
+            }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            html.theme-transitioning,
+            html.theme-transitioning body,
+            html.theme-transitioning h1,
+            html.theme-transitioning h2,
+            html.theme-transitioning strong,
+            html.theme-transitioning p,
+            html.theme-transitioning a,
+            html.theme-transitioning button,
+            html.theme-transitioning hr,
+            html.theme-transitioning .border-t {
+                transition: color 200ms ease, background-color 200ms ease, border-color 200ms ease, opacity 200ms ease;
+            }
+            .theme-toggle svg {
+                transition: opacity 160ms ease;
+                transform: scale(1);
+            }
+            html[data-theme="dark"] .theme-toggle .icon-moon,
+            .theme-toggle .icon-sun {
+                transform: scale(1);
+            }
+        }
+
+        @media (max-width: 440px) {
+            .site-header {
+                gap: 0.75rem;
+            }
+            .avatar-wrap {
+                width: 4.5rem;
+                height: 4.5rem;
+            }
+            .theme-toggle {
+                width: 1.875rem;
+                height: 1.875rem;
+            }
         }
     </style>
     <script>
-        // Apply saved theme immediately to prevent flash
         (function() {
-            var saved = localStorage.getItem('theme');
+            var saved = null;
+            try { saved = localStorage.getItem('theme'); } catch {}
             var dark = saved === 'dark' || (!saved && window.matchMedia('(prefers-color-scheme: dark)').matches);
             document.documentElement.setAttribute('data-theme', dark ? 'dark' : 'light');
         })();
@@ -192,90 +450,102 @@
 </head>
 <body>
     <div class="container">
-
-        <!-- Theme Toggle -->
-        <button class="theme-toggle" aria-label="Toggle theme">
-            <svg class="icon-moon" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M21 12.79A9 9 0 1111.21 3a7 7 0 009.79 9.79z"/>
-            </svg>
-            <svg class="icon-sun" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-                <circle cx="12" cy="12" r="5"/><path stroke-linecap="round" d="M12 1v2m0 18v2M4.22 4.22l1.42 1.42m12.73 12.73l1.42 1.42M1 12h2m18 0h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/>
-            </svg>
-        </button>
-
-        <!-- Header -->
-        <header class="flex items-start justify-between mb-6">
-            <div class="flex gap-4">
+        <header class="site-header">
+            <div class="avatar-wrap">
                 <img src="me.webp" alt="Jason Stockman" class="avatar" width="80" height="80">
-                <div>
+                <canvas class="avatar-canvas" aria-hidden="true"></canvas>
+            </div>
+            <div class="header-info">
+                <div class="header-top">
                     <h1 class="text-xl font-semibold">Jason Stockman</h1>
-                    <p class="text-muted">Full Stack Developer</p>
-                    <p class="text-light text-sm flex items-center gap-1">
-                        <svg class="icon-sm" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/>
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/>
+                    <button type="button" class="theme-toggle" aria-label="Toggle theme" title="Toggle theme">
+                        <svg class="icon-moon" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M21 12.79A9 9 0 1111.21 3a7 7 0 009.79 9.79z"/>
                         </svg>
-                        Pacifica, CA
-                    </p>
+                        <svg class="icon-sun" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true">
+                            <circle cx="12" cy="12" r="5"/><path stroke-linecap="round" d="M12 1v2m0 18v2M4.22 4.22l1.42 1.42m12.73 12.73l1.42 1.42M1 12h2m18 0h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/>
+                        </svg>
+                    </button>
+                </div>
+                <p class="text-muted text-sm">Founder &amp; Builder / benevolent meat proxy</p>
+                <p class="text-light text-sm flex items-center gap-1">
+                    <svg class="icon-sm" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/>
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/>
+                    </svg>
+                    Pacifica, CA 🌊
+                </p>
+                <div class="header-socials">
+                    <a href="#email" id="email-link" class="icon-btn" aria-label="Email Jason" title="Email">
+                        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
+                        </svg>
+                    </a>
+                    <a href="https://x.com/jasonstockman" target="_blank" rel="me noopener" class="icon-btn" aria-label="X" title="X">
+                        <svg fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                            <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+                        </svg>
+                    </a>
+                    <a href="https://linkedin.com/in/jasonstockman" target="_blank" rel="me noopener" class="icon-btn" aria-label="LinkedIn" title="LinkedIn">
+                        <svg fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                            <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+                        </svg>
+                    </a>
                 </div>
             </div>
         </header>
 
-        <!-- Contact Bar -->
-        <div class="flex justify-between items-center py-4 border-t text-sm text-muted">
-            <div class="flex items-center gap-1-5">
-                <svg class="icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
-                </svg>
-                <span class="email flex">
-                    <span>jason@</span>
-                    <span>pm.</span>
-                    <span>gmail.</span>
-                    <span>me</span>
-                    <span>.com</span>
-                </span>
-            </div>
-            <div class="flex gap-4">
-                <a href="https://x.com/jasonstockman" target="_blank" rel="me noopener" class="flex items-center gap-1-5">
-                    <svg class="icon" fill="currentColor" viewBox="0 0 24 24">
-                        <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+        <section class="about-section border-t">
+            <div class="about-header">
+                <h2 class="text-lg font-semibold">About me</h2>
+                <button type="button" class="audio-btn" id="about-play" aria-label="Listen to About me" aria-pressed="false" title="Listen in Jason's voice">
+                    <svg class="audio-ring" viewBox="0 0 32 32" aria-hidden="true">
+                        <circle class="audio-ring-track" cx="16" cy="16" r="14"/>
+                        <circle class="audio-ring-fill" cx="16" cy="16" r="14"/>
                     </svg>
-                    Twitter
-                </a>
-                <a href="https://linkedin.com/in/jasonstockman" target="_blank" rel="me noopener" class="flex items-center gap-1-5">
-                    <svg class="icon" fill="currentColor" viewBox="0 0 24 24">
-                        <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+                    <svg class="icon-play" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                        <path d="M8.5 6.4c0-.7.76-1.14 1.37-.79l9.16 5.6a.91.91 0 010 1.58l-9.16 5.6a.91.91 0 01-1.37-.79V6.4z"/>
                     </svg>
-                    LinkedIn
-                </a>
+                    <svg class="icon-pause" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                        <rect x="7" y="6" width="3.5" height="12" rx="1"/>
+                        <rect x="13.5" y="6" width="3.5" height="12" rx="1"/>
+                    </svg>
+                </button>
+                <audio id="about-audio" preload="none" src="assets/about-me.mp3"></audio>
             </div>
-        </div>
-
-        <!-- About Me -->
-        <section class="py-8">
-            <h2 class="text-lg font-semibold mb-4">About me</h2>
-            <div class="space-y-4 text-muted text-sm leading-relaxed">
-                <p>Hey, I'm Jason. I'm a full stack developer with a knack for building web applications.</p>
-                <p>I'm currently <span id="age">38</span> years old and live in Pacifica, California - roughly 20 minutes south of San Francisco.</p>
-                <p>I've been building websites for over <strong id="years">22</strong> years now, and along the way I've had the good fortune to work with some amazing people.</p>
+            <div class="about-body text-muted text-sm leading-relaxed">
+                <p>Hey, I'm Jason. 👋 I'm a founder and builder with a knack for crafting web apps. 💻</p>
+                <p>I'm currently <span id="age">38</span> years old and live in Pacifica, California, 🌊 roughly 20 minutes south of San Francisco. 🌉</p>
+                <p>I've been building websites for over <strong id="years">22</strong> years now, 🚀 and along the way I've had the good fortune to work with some amazing people. 🤝</p>
                 <hr>
-                <p>Today, I'm building <a href="https://warm.io" target="_blank" rel="noopener" class="link">Warm</a>, a personal financial dashboard.</p>
-                <p>Our mission is to make navigating your finances easy and stress-free.</p>
+                <p>Today, I'm building <a href="https://warm.io" target="_blank" rel="noopener" class="link">Warm</a>, ☀️ a personal financial dashboard. 📊</p>
+                <p>Our mission is to make navigating your finances easy and stress-free. 🧘</p>
                 <hr>
-                <p>Previously, I co-founded <a href="https://proton.me" target="_blank" rel="noopener" class="link">Proton</a>, an end-to-end encrypted email service.</p>
-                <p>Our mission with Proton is to make encryption and privacy accessible.</p>
+                <p>Previously, I co-founded <a href="https://proton.me" target="_blank" rel="noopener" class="link">Proton</a>, 🔐 an end-to-end encrypted email service. 📩</p>
+                <p>Our mission with Proton is to make encryption and privacy accessible. 🛡️</p>
             </div>
         </section>
-
     </div>
 
-    <!-- Footer -->
     <footer>
         <div class="footer-inner">
-            <div class="border-t pt-6">
+            <div class="border-t footer-rule">
                 <div class="footer-content text-light text-sm">
                     <p>Designed with &#x1FAF0; in Pacifica, CA</p>
-                    <a href="pixel-chopper.html" class="tiny-footer-link" rel="nofollow" aria-label="ttc Pixel Chopper">ttc</a>
+                    <a href="pixel-chopper.html" class="tiny-footer-link" rel="nofollow" aria-label="Pixel Chopper" title="Pixel Chopper">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                            <path d="M7.5 15.2 L8.4 7.2 Q12 5.2 15.6 7.2 L16.5 15.2"/>
+                            <path d="M4.5 16.2 Q12 14.1 19.5 16.2 Q19.2 18.4 12 18.4 Q4.8 18.4 4.5 16.2 Z"/>
+                            <path d="M10.3 9 L13.7 12.4"/>
+                            <path d="M13.7 9 L10.3 12.4"/>
+                            <path d="M7.7 12.8 C5 12.2 3.3 10.2 2.7 7.4"/>
+                            <path d="M4.6 11.4 L3.5 9.2"/>
+                            <path d="M5.8 12.1 L5.4 9.5"/>
+                            <path d="M16.3 12.8 C19 12.2 20.7 10.2 21.3 7.4"/>
+                            <path d="M19.4 11.4 L20.5 9.2"/>
+                            <path d="M18.2 12.1 L18.6 9.5"/>
+                        </svg>
+                    </a>
                     <p>&copy; Copyright <span id="year">2026</span></p>
                 </div>
             </div>
@@ -287,24 +557,318 @@
     </footer>
 
     <script>
-        const now = new Date();
-        const y = now.getFullYear();
-        const hadBirthday = now.getMonth() > 11 || (now.getMonth() === 11 && now.getDate() >= 11);
-        document.getElementById('year').textContent = y;
-        document.getElementById('years').textContent = y - 2004;
-        document.getElementById('age').textContent = y - 1987 - (hadBirthday ? 0 : 1);
+        (function() {
+            const now = new Date();
+            const y = now.getFullYear();
+            const hadBirthday = now.getMonth() > 11 || (now.getMonth() === 11 && now.getDate() >= 11);
+            document.getElementById('year').textContent = y;
+            document.getElementById('years').textContent = y - 2004;
+            document.getElementById('age').textContent = y - 1987 - (hadBirthday ? 0 : 1);
 
-        // Theme toggle
-        document.querySelector('.theme-toggle').addEventListener('click', function() {
-            var isDark = document.documentElement.getAttribute('data-theme') === 'dark';
-            if (isDark) {
-                document.documentElement.setAttribute('data-theme', 'light');
-                localStorage.setItem('theme', 'light');
-            } else {
-                document.documentElement.setAttribute('data-theme', 'dark');
-                localStorage.setItem('theme', 'dark');
+            const emailLink = document.getElementById('email-link');
+            const getAddress = () => ['jason', '@', 'pm', '.me'].join('');
+            const resolveEmail = () => {
+                if (emailLink.dataset.resolved) return;
+                emailLink.href = 'mailto:' + getAddress();
+                emailLink.dataset.resolved = '1';
+            };
+            emailLink.addEventListener('pointerenter', resolveEmail);
+            emailLink.addEventListener('focus', resolveEmail);
+            emailLink.addEventListener('click', (e) => {
+                if (!emailLink.dataset.resolved) {
+                    e.preventDefault();
+                    resolveEmail();
+                    window.location.href = emailLink.href;
+                }
+            });
+
+            const playBtn = document.getElementById('about-play');
+            const audio = document.getElementById('about-audio');
+            const ringFill = playBtn.querySelector('.audio-ring-fill');
+            const circumference = 2 * Math.PI * 14;
+            let audioRaf = 0;
+
+            const setProgress = (ratio) => {
+                const clamped = Math.max(0, Math.min(1, ratio));
+                ringFill.style.strokeDashoffset = (circumference * (1 - clamped)).toFixed(3);
+            };
+
+            const syncPlayingUi = (playing) => {
+                playBtn.classList.toggle('is-playing', playing);
+                playBtn.setAttribute('aria-pressed', playing ? 'true' : 'false');
+                playBtn.setAttribute('aria-label', playing ? 'Pause About me' : 'Listen to About me');
+            };
+
+            const stopAudioLoop = () => {
+                if (audioRaf) {
+                    cancelAnimationFrame(audioRaf);
+                    audioRaf = 0;
+                }
+            };
+
+            const tickAudio = () => {
+                audioRaf = 0;
+                if (audio.duration > 0 && Number.isFinite(audio.duration)) {
+                    setProgress(audio.currentTime / audio.duration);
+                }
+                if (!audio.paused && !audio.ended) {
+                    audioRaf = requestAnimationFrame(tickAudio);
+                }
+            };
+
+            playBtn.addEventListener('click', () => {
+                if (audio.paused || audio.ended) {
+                    const playPromise = audio.play();
+                    if (playPromise && typeof playPromise.catch === 'function') {
+                        playPromise.catch(() => {
+                            stopAudioLoop();
+                            syncPlayingUi(false);
+                        });
+                    }
+                } else {
+                    audio.pause();
+                }
+            });
+
+            audio.addEventListener('play', () => {
+                syncPlayingUi(true);
+                stopAudioLoop();
+                audioRaf = requestAnimationFrame(tickAudio);
+            });
+
+            audio.addEventListener('pause', () => {
+                stopAudioLoop();
+                syncPlayingUi(false);
+            });
+
+            audio.addEventListener('ended', () => {
+                stopAudioLoop();
+                audio.currentTime = 0;
+                setProgress(0);
+                syncPlayingUi(false);
+            });
+
+            audio.addEventListener('error', () => {
+                stopAudioLoop();
+                setProgress(0);
+                syncPlayingUi(false);
+            });
+
+            const canHover = window.matchMedia('(hover: hover) and (pointer: fine)');
+            const mqReduce = window.matchMedia('(prefers-reduced-motion: reduce)');
+            const avatarWrap = document.querySelector('.avatar-wrap');
+            const avatarImg = avatarWrap.querySelector('.avatar');
+            const avatarCanvas = avatarWrap.querySelector('.avatar-canvas');
+
+            if (canHover.matches && !mqReduce.matches) {
+                const ctx = avatarCanvas.getContext('2d');
+                const N = 16;
+                const C = 8;
+                const cells = new Float32Array(N * N);
+                const delays = new Float32Array(N * N);
+                const pulse = new Float32Array(N * N);
+                let palette16 = null;
+                let palette8 = null;
+                let pixelSize = 80;
+                let hovered = false;
+                let animRaf = 0;
+                let lastTime = 0;
+                let phaseStart = 0;
+                let pointer = { x: -1, y: -1, active: false };
+
+                const hashCell = (gx, gy) => {
+                    const v = Math.sin(gx * 127.1 + gy * 311.7) * 43758.5453;
+                    return v - Math.floor(v);
+                };
+
+                const sampleGrid = (size) => {
+                    const off = document.createElement('canvas');
+                    off.width = size;
+                    off.height = size;
+                    const octx = off.getContext('2d');
+                    octx.drawImage(avatarImg, 0, 0, size, size);
+                    const data = octx.getImageData(0, 0, size, size).data;
+                    const out = new Array(size * size);
+                    for (let i = 0; i < size * size; i++) {
+                        const o = i * 4;
+                        out[i] = `rgb(${data[o]},${data[o + 1]},${data[o + 2]})`;
+                    }
+                    return out;
+                };
+
+                const prepare = () => {
+                    if (!avatarImg.complete || avatarImg.naturalWidth === 0 || !ctx) return;
+                    const dpr = Math.min(window.devicePixelRatio || 1, 2);
+                    const rect = avatarWrap.getBoundingClientRect();
+                    const cssSize = Math.round(rect.width || 80);
+                    pixelSize = Math.max(80, Math.round(cssSize * dpr));
+                    avatarCanvas.width = pixelSize;
+                    avatarCanvas.height = pixelSize;
+                    try {
+                        palette16 = sampleGrid(N);
+                        palette8 = sampleGrid(C);
+                    } catch {
+                        palette16 = null;
+                        palette8 = null;
+                    }
+                };
+
+                const setWave = (nx, ny, maxDelay) => {
+                    for (let gy = 0; gy < N; gy++) {
+                        for (let gx = 0; gx < N; gx++) {
+                            const cx = (gx + 0.5) / N;
+                            const cy = (gy + 0.5) / N;
+                            const dist = Math.hypot(cx - nx, cy - ny) / 1.414;
+                            delays[gy * N + gx] = dist * maxDelay + hashCell(gx, gy) * 0.035;
+                        }
+                    }
+                };
+
+                const startAnim = () => {
+                    if (animRaf) return;
+                    lastTime = performance.now();
+                    animRaf = requestAnimationFrame(renderMorph);
+                };
+
+                const renderMorph = (now) => {
+                    animRaf = 0;
+                    if (!ctx || !palette16 || !palette8) return;
+                    const dt = Math.min(0.05, Math.max(0, (now - lastTime) / 1000));
+                    lastTime = now;
+                    const elapsed = (now - phaseStart) / 1000;
+                    const target = hovered ? 1 : 0;
+                    let moving = false;
+
+                    ctx.clearRect(0, 0, pixelSize, pixelSize);
+                    ctx.imageSmoothingEnabled = false;
+
+                    for (let gy = 0; gy < N; gy++) {
+                        const y0 = Math.floor((gy * pixelSize) / N);
+                        const y1 = Math.floor(((gy + 1) * pixelSize) / N);
+                        const ch = y1 - y0;
+                        const cy = (gy + 0.5) / N;
+
+                        for (let gx = 0; gx < N; gx++) {
+                            const idx = gy * N + gx;
+                            if (elapsed >= delays[idx]) {
+                                const cur = cells[idx];
+                                if (cur !== target) {
+                                    const step = dt / (hovered ? 0.22 : 0.16);
+                                    cells[idx] = hovered ? Math.min(1, cur + step) : Math.max(0, cur - step);
+                                }
+                            }
+                            if (cells[idx] !== target) moving = true;
+
+                            const cx = (gx + 0.5) / N;
+                            let targetPulse = 0;
+                            if (hovered && pointer.active) {
+                                const pd = Math.hypot(cx - pointer.x, cy - pointer.y);
+                                if (pd < 0.28) {
+                                    targetPulse = (1 - pd / 0.28);
+                                }
+                            }
+                            pulse[idx] += (targetPulse - pulse[idx]) * (1 - Math.exp(-dt * 14));
+                            const raw = cells[idx];
+                            if (raw <= 0.001) continue;
+                            if (Math.abs(targetPulse - pulse[idx]) > 0.005) moving = true;
+
+                            const eased = 1 - Math.pow(1 - raw, 3);
+                            const x0 = Math.floor((gx * pixelSize) / N);
+                            const x1 = Math.floor(((gx + 1) * pixelSize) / N);
+                            const cw = x1 - x0;
+
+                            const cx8 = Math.floor((gx * C) / N);
+                            const cy8 = Math.floor((gy * C) / N);
+                            const coarseColor = palette8[cy8 * C + cx8];
+                            const fineColor = palette16[idx];
+
+                            if (eased < 0.55) {
+                                const t = eased / 0.55;
+                                const s = 0.84 + 0.16 * t;
+                                const dx = x0 + (cw * (1 - s)) * 0.5;
+                                const dy = y0 + (ch * (1 - s)) * 0.5;
+                                ctx.globalAlpha = t;
+                                ctx.fillStyle = coarseColor;
+                                ctx.fillRect(Math.round(dx), Math.round(dy), Math.ceil(cw * s), Math.ceil(ch * s));
+                            } else {
+                                const t = (eased - 0.55) / 0.45;
+                                ctx.globalAlpha = 1;
+                                ctx.fillStyle = coarseColor;
+                                ctx.fillRect(x0, y0, cw, ch);
+                                ctx.globalAlpha = t;
+                                ctx.fillStyle = fineColor;
+                                ctx.fillRect(x0, y0, cw, ch);
+                            }
+
+                            const bevel = eased * 0.13;
+                            if (bevel > 0.01) {
+                                ctx.globalAlpha = bevel;
+                                ctx.fillStyle = '#ffffff';
+                                ctx.fillRect(x0, y0, cw, 1);
+                                ctx.fillRect(x0, y0, 1, ch);
+                                ctx.fillStyle = '#000000';
+                                ctx.fillRect(x0, y1 - 1, cw, 1);
+                                ctx.fillRect(x1 - 1, y0, 1, ch);
+                            }
+
+                            if (pulse[idx] > 0.01 && eased > 0.35) {
+                                ctx.globalAlpha = pulse[idx] * eased * 0.22;
+                                ctx.fillStyle = '#ffffff';
+                                ctx.fillRect(x0, y0, cw, ch);
+                            }
+                        }
+                    }
+                    ctx.globalAlpha = 1;
+
+                    if (moving) {
+                        animRaf = requestAnimationFrame(renderMorph);
+                    }
+                };
+
+                const toNorm = (e) => {
+                    const r = avatarWrap.getBoundingClientRect();
+                    return {
+                        x: Math.max(0, Math.min(1, (e.clientX - r.left) / r.width)),
+                        y: Math.max(0, Math.min(1, (e.clientY - r.top) / r.height))
+                    };
+                };
+
+                avatarWrap.addEventListener('pointerenter', (e) => {
+                    if (!palette16) prepare();
+                    if (!palette16) return;
+                    const pt = toNorm(e);
+                    pointer = { x: pt.x, y: pt.y, active: true };
+                    hovered = true;
+                    phaseStart = performance.now();
+                    setWave(pt.x, pt.y, 0.2);
+                    startAnim();
+                });
+
+                avatarWrap.addEventListener('pointermove', (e) => {
+                    if (!hovered) return;
+                    const pt = toNorm(e);
+                    pointer.x = pt.x;
+                    pointer.y = pt.y;
+                    pointer.active = true;
+                    startAnim();
+                });
+
+                avatarWrap.addEventListener('pointerleave', (e) => {
+                    const pt = toNorm(e);
+                    pointer.active = false;
+                    hovered = false;
+                    phaseStart = performance.now();
+                    setWave(pt.x, pt.y, 0.12);
+                    startAnim();
+                });
+
+                if (avatarImg.complete) {
+                    prepare();
+                } else {
+                    avatarImg.addEventListener('load', prepare, { once: true });
+                }
             }
-        });
+        })();
     </script>
     <script type="module">
         import { createShaderMetal } from './assets/shader-metal.js';
@@ -318,10 +882,91 @@
                 accents: ['#6a4a30', '#b9743c', '#5a4f9c']
             }
         };
+        const shaders = [];
         for (const [selector, speed] of [['.footer-metal-back', -0.055], ['.footer-metal-front', 0.11]]) {
             const stage = document.querySelector(selector);
-            if (!createShaderMetal(stage.querySelector('canvas'), { metal: 'graphite', speed, iridescence: 1, palette })) stage.remove();
+            const ctrl = createShaderMetal(stage.querySelector('canvas'), { metal: 'graphite', speed, iridescence: 1, palette });
+            if (ctrl) {
+                shaders.push(ctrl);
+            } else {
+                stage.remove();
+            }
         }
+
+        const toggleBtn = document.querySelector('.theme-toggle');
+        const mqReduce = window.matchMedia('(prefers-reduced-motion: reduce)');
+        let currentTheme = document.documentElement.getAttribute('data-theme') === 'dark' ? 'dark' : 'light';
+        let activeTransition = null;
+        let fallbackTimer = 0;
+
+        toggleBtn.addEventListener('click', () => {
+            const root = document.documentElement;
+            currentTheme = currentTheme === 'dark' ? 'light' : 'dark';
+            const nextTheme = currentTheme;
+            try { localStorage.setItem('theme', nextTheme); } catch {}
+
+            const applyTheme = () => {
+                root.setAttribute('data-theme', nextTheme);
+                for (const s of shaders) s.snapTheme();
+            };
+
+            if (mqReduce.matches || typeof document.startViewTransition !== 'function') {
+                clearTimeout(fallbackTimer);
+                root.classList.add('theme-transitioning');
+                if (mqReduce.matches) {
+                    applyTheme();
+                } else {
+                    root.setAttribute('data-theme', nextTheme);
+                }
+                fallbackTimer = setTimeout(() => {
+                    root.classList.remove('theme-transitioning');
+                }, mqReduce.matches ? 220 : 620);
+                return;
+            }
+
+            if (activeTransition) {
+                try {
+                    activeTransition.skipTransition();
+                } catch {}
+                activeTransition = null;
+            }
+
+            const rect = toggleBtn.getBoundingClientRect();
+            const x = rect.left + rect.width / 2;
+            const y = rect.top + rect.height / 2;
+            const endRadius = Math.hypot(
+                Math.max(x, window.innerWidth - x),
+                Math.max(y, window.innerHeight - y)
+            );
+
+            for (const s of shaders) s.redraw();
+
+            const transition = document.startViewTransition(applyTheme);
+            activeTransition = transition;
+
+            transition.ready.then(() => {
+                if (activeTransition !== transition) return;
+                document.documentElement.animate(
+                    {
+                        clipPath: [
+                            `circle(0px at ${x}px ${y}px)`,
+                            `circle(${endRadius}px at ${x}px ${y}px)`
+                        ]
+                    },
+                    {
+                        duration: 600,
+                        easing: 'cubic-bezier(0.22, 1, 0.36, 1)',
+                        pseudoElement: '::view-transition-new(root)'
+                    }
+                );
+            }).catch(() => {});
+
+            transition.finished.finally(() => {
+                if (activeTransition === transition) {
+                    activeTransition = null;
+                }
+            });
+        });
     </script>
 </body>
 </html>

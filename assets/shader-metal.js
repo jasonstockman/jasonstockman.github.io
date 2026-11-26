@@ -548,6 +548,15 @@ function createShaderMetal(canvas, initial = {}) {
       syncTheme();
       wake();
     },
+    redraw() {
+      redraw();
+    },
+    snapTheme() {
+      dark = resolveDark(options.theme ?? "auto");
+      darkMix = dark ? 1 : 0;
+      options.onThemeChange?.(dark);
+      redraw();
+    },
     destroy() {
       destroyed = true;
       cancelAnimationFrame(raf);
